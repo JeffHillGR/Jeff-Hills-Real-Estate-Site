@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeff Hill Realty | West Michigan Real Estate</title>
+  <meta name="description" content="Jeff Hill - Your trusted West Michigan real estate expert. Buy, sell, build, or invest with confidence.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7aaa6d',
+            accent: '#5a8f4e',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .sidebar-gradient {
+      background: linear-gradient(180deg, #8fbc8b 0%, #6b9e68 100%);
+    }
+    .banner-image {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .banner-image.active {
+      opacity: 1;
+    }
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    /* Blog content list styling */
+    .prose ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin: 0.5rem 0;
+    }
+    .prose ol {
+      list-style-type: decimal;
+      padding-left: 1.5rem;
+      margin: 0.5rem 0;
+    }
+    .prose li {
+      margin: 0.25rem 0;
+    }
+    /* Blog content image styling */
+    .prose img {
+      max-width: 100%;
+      height: auto;
+      margin: 8px 0;
+      border-radius: 4px;
+    }
+    .prose img.float-left {
+      float: left;
+      margin: 0 16px 8px 0;
+      max-width: 50%;
+    }
+    .prose img.float-right {
+      float: right;
+      margin: 0 0 8px 16px;
+      max-width: 50%;
+    }
+    .prose img.small {
+      max-width: 200px;
+    }
+    .prose img.medium {
+      max-width: 350px;
+    }
+    .prose::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    /* Cascade animation for tiles */
+    @keyframes cascadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .cascade-tile {
+      opacity: 0;
+      animation: cascadeIn 0.5s ease-out forwards;
+    }
+    .cascade-tile:nth-child(1) { animation-delay: 0.1s; }
+    .cascade-tile:nth-child(2) { animation-delay: 0.2s; }
+    .cascade-tile:nth-child(3) { animation-delay: 0.3s; }
+    .cascade-tile:nth-child(4) { animation-delay: 0.4s; }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <div class="flex flex-col lg:flex-row min-h-screen">
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar-gradient text-white lg:w-80 lg:flex-shrink-0">
+      <div class="p-6 text-center">
+        <!-- Logo -->
+        <img src="public/images/JH Realty logo.jpg" alt="JH Realty" class="w-48 mx-auto mb-4 rounded">
+
+        <!-- Profile Photo -->
+        <img src="public/images/jeff-headshot.jpg" alt="Jeff Hill" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover border-4 border-white">
+
+        <!-- Name & Title -->
+        <h1 class="text-2xl font-bold">Jeff Hill</h1>
+        <p class="text-white font-medium">Licensed REALTOR®</p>
+        <p class="text-white text-sm mt-1">West Michigan</p>
+
+        <!-- Bio -->
+        <div class="mt-6 text-left text-sm text-white leading-relaxed">
+          <p class="mb-3">
+            With over 20 years of experience in West Michigan real estate, I specialize in helping clients find their perfect home and investors build lasting wealth through property.
+          </p>
+          <p>
+            Whether you're buying your first home, selling to move up, or looking to invest, I bring local expertise and personal attention to every transaction.
+          </p>
+        </div>
+
+        <!-- Credentials -->
+        <div class="mt-6 pt-6 border-t border-white/30">
+          <ul class="text-sm text-white space-y-1">
+            <li>Licensed Michigan REALTOR®</li>
+            <li>License #6501307462</li>
+            <li>Member, Grand Rapids Association of REALTORS®</li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="mt-6 pt-6 border-t border-white/30">
+          <h3 class="text-sm font-semibold text-white mb-3">Contact</h3>
+          <p class="text-sm text-white">
+            <a href="tel:+16165810521">(616) 581-0521</a>
+          </p>
+          <p class="text-sm text-white mt-1">
+            <a href="mailto:grjeff@gmail.com">grjeff@gmail.com</a>
+          </p>
+          <div class="flex gap-4 mt-4 justify-center">
+            <a href="https://www.linkedin.com/in/jeffahill/" target="_blank" class="text-white hover:text-white/80 text-2xl" title="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.zillow.com/profile/JeffHillGR" target="_blank" class="text-white hover:text-white/80 text-2xl leading-none" title="Zillow">
+              <span class="inline-flex items-center justify-center w-[1.1em] h-[1.1em] border-2 border-current rounded font-bold text-[0.65em]">Z</span>
+            </a>
+            <span class="text-white/50 text-2xl cursor-not-allowed relative group" title="Coming soon">
+              <i class="fab fa-facebook"></i>
+              <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Coming soon</span>
+            </span>
+            <span class="text-white/50 text-2xl cursor-not-allowed relative group" title="Coming soon">
+              <i class="fab fa-instagram"></i>
+              <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Coming soon</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Brokerage -->
+        <div class="mt-6 pt-6 border-t border-white/30">
+          <p class="text-sm text-white">JH Realty Partners</p>
+          <p class="text-sm text-white mt-1">545 Ada Dr SE #201</p>
+          <p class="text-sm text-white">Ada, MI 49301</p>
+        </div>
+
+        <!-- Menu -->
+        <nav class="mt-6 pt-6 border-t border-white/30">
+          <ul class="space-y-2">
+            <li><a href="#insights" class="block py-2 px-4 rounded hover:bg-white/10 transition">Insights</a></li>
+            <li><a href="#contact" class="block py-2 px-4 rounded hover:bg-white/10 transition">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1">
+
+      <!-- Hero Banner -->
+      <section class="relative h-[280px] bg-gray-100 overflow-hidden">
+        <img src="public/images/RE Banners-1.png" alt="Banner 1" class="banner-image active absolute inset-0 w-full h-full object-cover object-center">
+        <img src="public/images/RE Banners-2.png" alt="Banner 2" class="banner-image absolute inset-0 w-full h-full object-cover object-center">
+        <img src="public/images/RE Banners-3.png" alt="Banner 3" class="banner-image absolute inset-0 w-full h-full object-cover object-center">
+        <img src="public/images/RE Banners-4.png" alt="Banner 4" class="banner-image absolute inset-0 w-full h-full object-cover object-center">
+      </section>
+
+      <!-- Insights + CTA Tiles Section -->
+      <section class="pt-8 pb-12 px-6 md:px-12">
+        <div class="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
+
+          <!-- Left: Insights Container -->
+          <div class="lg:w-3/5">
+            <h2 id="insights" class="text-2xl font-bold text-primary mb-6">Market Insights</h2>
+            <div id="insights-container" class="bg-white rounded-lg shadow-lg p-6 min-h-[680px]">
+              <!-- Blog posts will be loaded here by JavaScript -->
+              <div id="insights-placeholder" class="flex items-center justify-center h-full text-gray-400">
+                <div class="text-center">
+                  <p class="text-2xl font-semibold mb-2">Coming Soon</p>
+                  <p class="text-sm">Blog posts and market updates will appear here</p>
+                </div>
+              </div>
+              <div id="insights-posts" class="hidden space-y-6"></div>
+            </div>
+          </div>
+
+          <!-- Right: CTA Tiles Stacked -->
+          <div class="lg:w-2/5">
+            <h2 class="text-2xl font-bold text-primary mb-6 text-center lg:text-left">How can I help?</h2>
+            <div class="flex flex-col gap-4">
+              <!-- Want to Sell -->
+              <div class="cascade-tile bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group cursor-pointer" onclick="openModal('want-to-sell')">
+                <div class="flex">
+                  <img src="public/images/RE-sold-sign.jpg" alt="Want to Sell" class="w-36 h-40 object-cover group-hover:scale-105 transition duration-300">
+                  <div class="p-4 flex items-center">
+                    <h3 class="text-xl font-bold text-primary">Want to Sell?</h3>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Want to Buy -->
+              <div class="cascade-tile bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group cursor-pointer" onclick="openModal('want-to-buy')">
+                <div class="flex">
+                  <img src="public/images/Home-closing.jpg" alt="Want to Buy" class="w-36 h-40 object-cover group-hover:scale-105 transition duration-300">
+                  <div class="p-4 flex items-center">
+                    <h3 class="text-xl font-bold text-primary">Want to Buy?</h3>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Want to Build -->
+              <div class="cascade-tile bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group cursor-pointer" onclick="openModal('want-to-build')">
+                <div class="flex">
+                  <img src="public/images/New kitchen.jpg" alt="Want to Build" class="w-36 h-40 object-cover group-hover:scale-105 transition duration-300">
+                  <div class="p-4 flex items-center">
+                    <h3 class="text-xl font-bold text-primary">Want to Build?</h3>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Want to Invest -->
+              <div class="cascade-tile bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group cursor-pointer" onclick="openModal('want-to-invest')">
+                <div class="flex">
+                  <img src="public/images/Investment-home.jpg" alt="Want to Invest" class="w-36 h-40 object-cover group-hover:scale-105 transition duration-300">
+                  <div class="p-4 flex items-center">
+                    <h3 class="text-xl font-bold text-primary">Want to Invest?</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Row 1 -->
+      <section class="py-12 px-6 md:px-12 bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div class="bg-gray-50 rounded-lg p-6">
+            <p class="text-gray-700 italic mb-4">"Jeff was super responsive and very familiar with the local market. He helped talk us through different scenarios, buying vs building, etcetera. Would definitely recommend!"</p>
+            <p class="text-primary font-semibold">— James Eicher</p>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-6">
+            <p class="text-gray-700 italic mb-4">"Jeff Hill was a great realtor for us. Any time we had a question or needed information he was always available to answer right away. We have had a great experience selling our home with Jeff."</p>
+            <p class="text-primary font-semibold">— Trish Heibel</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Homes IDX Feed -->
+      <section id="listings" class="py-12 px-6 md:px-12 bg-gray-100">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-2xl font-bold text-primary mb-8 text-center">Featured Homes</h2>
+          <div class="bg-white rounded-lg shadow-md p-8 text-center text-gray-500">
+            <p class="text-lg">IDX feed coming soon</p>
+            <p class="text-sm mt-2">Featured listings will appear here.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Row 2 -->
+      <section class="py-12 px-6 md:px-12 bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div class="bg-gray-50 rounded-lg p-6">
+            <p class="text-gray-700 italic mb-4">"Jeff's extensive industry experience and professionalism were critical to making this a smooth process overall, despite the challenging conditions brought on by COVID-19 in a competitive real estate market! He was always accessible and timely in his communication, would definitely recommend to anyone looking for a trusted and experienced agent in the greater Grand Rapids market."</p>
+            <p class="text-primary font-semibold">— Evan Mlynarek</p>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-6">
+            <p class="text-gray-700 italic mb-4">"We purchased a new build/spec home from Interra Homes and worked very closely with Jeff Hill. They were an absolute pleasure to work with, immediate with their responses to any issues that arose, and very knowledgeable with the buying/building process."</p>
+            <p class="text-primary font-semibold">— Andrea G.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recently Sold -->
+      <section class="py-12 px-6 md:px-12 bg-gray-100">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-2xl font-bold text-primary mb-8 text-center">Recently Sold</h2>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://cdn.resize.sparkplatform.com/ric/1280x1024/true/20250516014849016968000000-o.jpg" alt="11410 Wild Pond Ct NE" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="text-xs text-gray-600 leading-tight">11410 Wild Pond Ct NE, Rockford, MI</p>
+                <p class="text-sm font-bold text-primary mt-1">$490,000</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://cdn.resize.sparkplatform.com/ric/1280x1024/true/20250511180312097876000000-o.jpg" alt="10139 Augusta Valley Ct SE" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="text-xs text-gray-600 leading-tight">10139 Augusta Valley Ct SE, Ada, MI</p>
+                <p class="text-sm font-bold text-primary mt-1">$775,000</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://cdn.resize.sparkplatform.com/ric/1280x1024/true/20250423210837715632000000-o.jpg" alt="11815 Henrietta Dr NE" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="text-xs text-gray-600 leading-tight">11815 Henrietta Dr NE, Rockford, MI</p>
+                <p class="text-sm font-bold text-primary mt-1">$749,000</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://cdn.resize.sparkplatform.com/ric/1280x1024/true/20240926135623378277000000-o.jpg" alt="1747 Flowers Mill Dr NE" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="text-xs text-gray-600 leading-tight">1747 Flowers Mill Dr NE, Grand Rapids, MI</p>
+                <p class="text-sm font-bold text-primary mt-1">$920,000</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://cdn.resize.sparkplatform.com/ric/1280x1024/true/20220426221858541850000000-o.jpg" alt="22579 N Uldriks Dr" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="text-xs text-gray-600 leading-tight">22579 N Uldriks Dr, Battle Creek, MI</p>
+                <p class="text-sm font-bold text-primary mt-1">$440,000</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-12 px-6 md:px-12 bg-primary text-white">
+        <div class="max-w-2xl mx-auto text-center">
+          <h2 class="text-2xl font-bold mb-4">Ready to Get Started?</h2>
+          <p class="text-gray-200 mb-8">Whether you're buying, selling, or just have questions, I'm here to help.</p>
+          <button onclick="openModal('general')" class="bg-accent hover:bg-yellow-600 text-primary font-bold py-3 px-8 rounded-lg transition">
+            Contact Me
+          </button>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-gray-900 text-gray-400 py-8 px-6">
+        <div class="max-w-6xl mx-auto text-center text-sm">
+          <p>&copy; 2026 Jeff Hill Realty. All rights reserved.</p>
+          <p class="mt-2">Licensed REALTOR® in the State of Michigan</p>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Inquiry Modal -->
+  <div id="modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h3 id="modal-title" class="text-xl font-bold text-primary">Get in Touch</h3>
+          <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+        </div>
+
+        <p id="modal-description" class="text-gray-600 text-sm mb-6 hidden"></p>
+
+        <!-- Success State -->
+        <div id="form-success" class="hidden text-center py-8">
+          <div class="text-5xl mb-4">&#10003;</div>
+          <h4 class="text-xl font-bold text-primary mb-2">Message Sent!</h4>
+          <p class="text-gray-600 mb-2">Thanks for reaching out. I'll get back to you soon.</p>
+          <p class="text-gray-600 mb-6 italic">- Jeff Hill</p>
+          <button onclick="closeModal()" class="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-6 rounded-lg transition">
+            Close
+          </button>
+        </div>
+
+        <form id="inquiry-form" onsubmit="submitForm(event)">
+          <input type="hidden" id="inquiry-type" name="inquiry_type" value="">
+
+          <div class="space-y-4">
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                <input type="text" name="first_name" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+                <input type="text" name="last_name" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+              <input type="email" name="email" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent">
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+              <input type="tel" name="phone" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent">
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+              <textarea name="message" rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="Tell me a bit about your situation..."></textarea>
+            </div>
+          </div>
+
+          <button type="submit" id="submit-btn" class="w-full mt-6 bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg transition">
+            Send Message
+          </button>
+
+          <p id="form-status" class="mt-4 text-center text-sm hidden"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Google Apps Script URL for forms and blog
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyyEAW8uHvs2FfyzJZ153i854RATF-As9TWKdzNVrLKBQb8CyhfRFO1_VfCro9dLd-s/exec';
+
+    // Modal handling
+    const modalTitles = {
+      'need-to-sell': 'Need to Sell Your Home?',
+      'want-to-sell': 'Thinking About Selling?',
+      'need-to-buy': 'Ready to Buy Now?',
+      'want-to-buy': 'Interested in Buying?',
+      'want-to-build': 'Want to Build?',
+      'want-to-invest': 'Investment Inquiry',
+      'general': 'Get in Touch'
+    };
+
+    const modalDescriptions = {
+      'want-to-sell': 'I can provide you with an in-depth analysis of the market to reach the most optimal listing price, as well as inexpensive tips to help get your home ready to sell (fast).',
+      'want-to-buy': 'I\'ve helped hundreds of buyers craft meaningful offers to successfully get the home they want. My success rate is over 90% in multiple offers situations, and I work tirelessly through inspections all the way until we close.',
+      'want-to-build': 'I have over 20 years working with the top builders in West Michigan helping hundreds of homeowners. I can help you find the right lot in the right neighborhood, and represent you through the entire build process to make sure you\'re taken care of.',
+      'want-to-invest': 'I have extensive experience owning investment properties in both Michigan and Florida. I can help you find the right opportunities, whether it\'s for short or long-term rentals, and help get you set up whether you want to self-manage or hire a property manager. Now is the time to buy.'
+    };
+
+    function openModal(type) {
+      document.getElementById('modal').classList.remove('hidden');
+      document.getElementById('modal').classList.add('flex');
+      document.getElementById('modal-title').textContent = modalTitles[type] || 'Get in Touch';
+
+      const descEl = document.getElementById('modal-description');
+      if (modalDescriptions[type]) {
+        descEl.textContent = modalDescriptions[type];
+        descEl.classList.remove('hidden');
+      } else {
+        descEl.classList.add('hidden');
+      }
+      document.getElementById('inquiry-type').value = type;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+      document.getElementById('modal').classList.remove('flex');
+      document.body.style.overflow = '';
+      document.getElementById('inquiry-form').reset();
+      document.getElementById('inquiry-form').classList.remove('hidden');
+      document.getElementById('form-success').classList.add('hidden');
+      document.getElementById('form-status').classList.add('hidden');
+      document.getElementById('modal-description').classList.add('hidden');
+    }
+
+    // Close modal on background click
+    document.getElementById('modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // Form submission
+    async function submitForm(e) {
+      e.preventDefault();
+      const form = e.target;
+      const submitBtn = document.getElementById('submit-btn');
+      const status = document.getElementById('form-status');
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      const formData = {
+        timestamp: new Date().toISOString(),
+        first_name: form.first_name.value,
+        last_name: form.last_name.value,
+        email: form.email.value,
+        phone: form.phone.value || '',
+        inquiry_type: form.inquiry_type.value,
+        message: form.message.value || ''
+      };
+
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        // Show success state
+        document.getElementById('inquiry-form').classList.add('hidden');
+        document.getElementById('modal-description').classList.add('hidden');
+        document.getElementById('form-success').classList.remove('hidden');
+        form.reset();
+      } catch (error) {
+        status.textContent = 'Something went wrong. Please try again or call me directly.';
+        status.classList.remove('hidden', 'text-green-600');
+        status.classList.add('text-red-600');
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
+
+    // Banner rotation
+    const banners = document.querySelectorAll('.banner-image');
+
+    // Start with a random banner on page load
+    let currentBanner = Math.floor(Math.random() * banners.length);
+    banners.forEach(b => b.classList.remove('active'));
+    banners[currentBanner].classList.add('active');
+
+    function rotateBanners() {
+      banners[currentBanner].classList.remove('active');
+      currentBanner = (currentBanner + 1) % banners.length;
+      banners[currentBanner].classList.add('active');
+    }
+
+    setInterval(rotateBanners, 6000);
+
+    // Load blog posts from Google Sheets
+    async function loadBlogPosts() {
+      const placeholder = document.getElementById('insights-placeholder');
+      const postsContainer = document.getElementById('insights-posts');
+
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL);
+        const posts = await response.json();
+
+        if (posts.length === 0) {
+          placeholder.classList.remove('hidden');
+          postsContainer.classList.add('hidden');
+          return;
+        }
+
+        placeholder.classList.add('hidden');
+        postsContainer.classList.remove('hidden');
+
+        // Show up to 3 most recent posts
+        const recentPosts = posts.slice(0, 3);
+
+        postsContainer.innerHTML = recentPosts.map(post => `
+          <article class="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
+            <div class="flex gap-4">
+              ${post.image ? `<img src="${post.image}" alt="${post.title}" class="w-28 h-28 object-cover rounded-lg flex-shrink-0">` : ''}
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-primary mb-1">${post.title}</h3>
+                <p class="text-xs text-gray-500 mb-2">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                <div class="text-gray-700 text-sm prose prose-sm">${post.content}</div>
+              </div>
+            </div>
+          </article>
+        `).join('');
+      } catch (error) {
+        console.error('Error loading blog posts:', error);
+        placeholder.classList.remove('hidden');
+        postsContainer.classList.add('hidden');
+      }
+    }
+
+    // Load posts on page load
+    loadBlogPosts();
+  </script>
+</body>
+</html>
