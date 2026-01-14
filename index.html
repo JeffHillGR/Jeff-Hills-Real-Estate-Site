@@ -100,17 +100,20 @@
 
     /* Featured listing fade in */
     @keyframes fadeSlideIn {
-      from {
+      0% {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
       }
-      to {
+      100% {
         opacity: 1;
         transform: translateY(0);
       }
     }
-    .animate-fade-slide {
-      animation: fadeSlideIn 0.6s ease-out forwards;
+    #featured-listing {
+      opacity: 0;
+    }
+    #featured-listing.animate-fade-slide {
+      animation: fadeSlideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
     }
   </style>
 </head>
@@ -261,9 +264,8 @@
               <div class="cascade-tile bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group cursor-pointer" onclick="openModal('want-to-buy')">
                 <div class="flex">
                   <img src="public/images/Home-closing.jpg" alt="Want to Buy" class="w-36 h-40 object-cover group-hover:scale-105 transition duration-300">
-                  <div class="p-4 flex flex-col justify-center">
+                  <div class="p-4 flex items-center">
                     <h3 class="text-xl font-bold text-primary">Want to Buy?</h3>
-                    <p class="text-xs text-gray-600 mt-2 leading-relaxed">I've helped hundreds of buyers craft meaningful offers to successfully get the home they want. My success rate is over 90% in multiple offer situations, and I work tirelessly through inspections, through closing and post-close follow ups.</p>
                   </div>
                 </div>
               </div>
@@ -301,6 +303,9 @@
                   <p id="featured-agent" class="text-gray-400 text-xs mt-2 italic"></p>
                 </div>
               </a>
+              <button onclick="openModal('lets-go-look')" class="w-full mt-3 bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-lg transition">
+                Let's Go Look!
+              </button>
             </div>
           </div>
         </div>
@@ -486,14 +491,16 @@
       'want-to-buy': 'Interested in Buying?',
       'want-to-build': 'Want to Build?',
       'want-to-invest': 'Investment Inquiry',
+      'lets-go-look': 'Let\'s Go Look!',
       'general': 'Get in Touch'
     };
 
     const modalDescriptions = {
       'want-to-sell': 'I can provide you with an in-depth analysis of the market to reach the most optimal listing price, as well as inexpensive tips to help get your home ready to sell (fast).',
-      'want-to-buy': 'I\'ve helped hundreds of buyers craft meaningful offers to successfully get the home they want. My success rate is over 90% in multiple offers situations, and I work tirelessly through inspections all the way until we close.',
+      'want-to-buy': 'I\'ve helped hundreds of buyers craft meaningful offers to successfully get the home they want. My success rate is over 90% in multiple offer situations, and I work tirelessly through inspections, through closing and post-close follow ups.',
       'want-to-build': 'I have over 20 years working with the top builders in West Michigan helping hundreds of homeowners. I can help you find the right lot in the right neighborhood, and represent you through the entire build process to make sure you\'re taken care of.',
-      'want-to-invest': 'I have extensive experience owning investment properties in both Michigan and Florida. I can help you find the right opportunities, whether it\'s for short or long-term rentals, and help get you set up whether you want to self-manage or hire a property manager. Now is the time to buy.'
+      'want-to-invest': 'I have extensive experience owning investment properties in both Michigan and Florida. I can help you find the right opportunities, whether it\'s for short or long-term rentals, and help get you set up whether you want to self-manage or hire a property manager. Now is the time to buy.',
+      'lets-go-look': 'Interested in seeing this property? Fill out the form below and I\'ll reach out to schedule a showing.'
     };
 
     function openModal(type) {
