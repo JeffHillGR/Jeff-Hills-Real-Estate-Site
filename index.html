@@ -36,6 +36,12 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+    .line-clamp-6 {
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
     /* Blog content list styling */
     .prose ul {
       list-style-type: disc;
@@ -151,14 +157,58 @@
 
     <!-- Left Sidebar -->
     <aside class="sidebar-gradient text-white lg:w-80 lg:flex-shrink-0">
-      <div class="p-6 text-center">
-        <!-- Logo -->
-        <img src="public/images/JH Realty logo.jpg" alt="JH Realty" class="w-48 mx-auto mb-4 rounded">
+      <!-- Mobile: Compact header only -->
+      <div class="lg:hidden p-4">
+        <div class="flex items-center gap-3">
+          <!-- Hamburger menu button -->
+          <button onclick="toggleMobileMenu()" class="text-white p-1">
+            <i id="menu-icon" class="fas fa-bars text-xl"></i>
+          </button>
+          <img src="public/images/JH Realty logo.jpg" alt="JH Realty" class="w-28 rounded">
+          <div class="flex-1">
+            <h1 class="text-lg font-bold">Jeff Hill</h1>
+            <p class="text-white/90 text-xs">Licensed REALTOR® | West Michigan</p>
+          </div>
+        </div>
+        <!-- Mobile menu dropdown -->
+        <div id="mobile-menu" class="hidden mt-3 pt-3 border-t border-white/20">
+          <nav class="space-y-1">
+            <a href="#insights" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Market Insights</a>
+            <a href="#how-can-i-help" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">How Can I Help?</a>
+            <a href="#testimonials" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Testimonials</a>
+            <a href="#buy-first" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Buy First, Sell Later</a>
+            <a href="#recently-sold" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Recently Sold</a>
+            <div class="pt-2 mt-2 border-t border-white/20">
+              <a href="tel:+16165810521" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">
+                <i class="fas fa-phone mr-2 text-xs"></i>(616) 581-0521
+              </a>
+              <a href="mailto:grjeff@gmail.com" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">
+                <i class="fas fa-envelope mr-2 text-xs"></i>grjeff@gmail.com
+              </a>
+              <div class="flex gap-4 mt-3 px-3">
+                <a href="https://www.linkedin.com/in/jeffahill/" target="_blank" class="text-white hover:text-white/80 text-xl" title="LinkedIn">
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.zillow.com/profile/JeffHillGR" target="_blank" class="text-white hover:text-white/80 text-xl leading-none" title="Zillow">
+                  <span class="inline-flex items-center justify-center w-[1.1em] h-[1.1em] border-2 border-current rounded font-bold text-[0.65em]">Z</span>
+                </a>
+                <span class="text-white/50 text-xl cursor-not-allowed" title="Coming soon">
+                  <i class="fab fa-facebook"></i>
+                </span>
+                <span class="text-white/50 text-xl cursor-not-allowed" title="Coming soon">
+                  <i class="fab fa-instagram"></i>
+                </span>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
 
-        <!-- Profile Photo -->
+      <!-- Desktop: Full sidebar -->
+      <div class="hidden lg:block p-6 text-center">
+        <img src="public/images/JH Realty logo.jpg" alt="JH Realty" class="w-56 mx-auto mb-4 rounded">
         <img src="public/images/jeff-headshot.jpg" alt="Jeff Hill" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover border-4 border-white">
 
-        <!-- Name & Title -->
         <h1 class="text-2xl font-bold">Jeff Hill</h1>
         <p class="text-white font-medium">Licensed REALTOR®</p>
         <p class="text-white text-sm mt-1">West Michigan</p>
@@ -173,13 +223,21 @@
           </p>
         </div>
 
-        <!-- Credentials -->
+        <!-- Colleague Quotes -->
         <div class="mt-6 pt-6 border-t border-white/30">
-          <ul class="text-sm text-white space-y-1">
-            <li>Licensed Michigan REALTOR®</li>
-            <li>License #6501307462</li>
-            <li>Member, Grand Rapids Association of REALTORS®</li>
-          </ul>
+          <p class="text-base text-white font-semibold mb-4">Hear from my fellow real estate colleagues:</p>
+          <div class="bg-white/80 rounded-lg p-4 mb-3">
+            <p class="text-sm text-black italic leading-relaxed">
+              "You never know what kind of an agent you are going to get on the other side in a real estate transaction. Jeff was great to work with, always keeping his clients best interest at heart. No drama, solution driven, working together to get us all to the closing table. I'd do another deal with him any day!"
+            </p>
+            <p class="text-sm text-primary font-semibold mt-2">— Joni McArthur, EXP Realty</p>
+          </div>
+          <div class="bg-white/80 rounded-lg p-4">
+            <p class="text-sm text-black italic leading-relaxed">
+              "What truly set Jeff apart was his remarkable responsiveness. He was always available to answer our questions, no matter how big or small, and kept me informed every step of the way. This clear and consistent communication made a potentially stressful process feel smooth and manageable."
+            </p>
+            <p class="text-sm text-primary font-semibold mt-2">— Marilyn Hazard, Broker, Keller Williams GRN</p>
+          </div>
         </div>
 
         <!-- Contact -->
@@ -209,36 +267,12 @@
           </div>
         </div>
 
-        <!-- Colleague Quotes -->
-        <div class="mt-6 pt-6 border-t border-white/30">
-          <p class="text-base text-white font-semibold mb-4">Hear from my fellow real estate colleagues:</p>
-          <div class="bg-white/80 rounded-lg p-4 mb-3">
-            <p class="text-sm text-black italic leading-relaxed">
-              "You never know what kind of an agent you are going to get on the other side in a real estate transaction. Jeff was great to work with, always keeping his clients best interest at heart. No drama, solution driven, working together to get us all to the closing table. I'd do another deal with him any day!"
-            </p>
-            <p class="text-sm text-primary font-semibold mt-2">— Joni McArthur, EXP Realty</p>
-          </div>
-          <div class="bg-white/80 rounded-lg p-4">
-            <p class="text-sm text-black italic leading-relaxed">
-              "What truly set Jeff apart was his remarkable responsiveness. He was always available to answer our questions, no matter how big or small, and kept me informed every step of the way. This clear and consistent communication made a potentially stressful process feel smooth and manageable."
-            </p>
-            <p class="text-sm text-primary font-semibold mt-2">— Marilyn Hazard, Broker, Keller Williams GRN</p>
-          </div>
-        </div>
-
-        <!-- Brokerage -->
-        <div class="mt-6 pt-6 border-t border-white/30">
-          <p class="text-sm text-white">JH Realty Partners</p>
-          <p class="text-sm text-white mt-1">545 Ada Dr SE #201</p>
-          <p class="text-sm text-white">Ada, MI 49301</p>
-        </div>
-
         <!-- Menu -->
-        <nav class="mt-6 pt-6 border-t border-white/30">
-          <ul class="space-y-2">
-            <li><a href="#" onclick="event.preventDefault(); openModal('general')" class="block py-2 px-4 rounded hover:bg-white/10 transition">Contact</a></li>
-          </ul>
-        </nav>
+        <div class="mt-6 pt-6 border-t border-white/30">
+          <button onclick="openModal('general')" class="w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition">
+            Get in Touch
+          </button>
+        </div>
       </div>
     </aside>
 
@@ -246,7 +280,7 @@
     <main class="flex-1">
 
       <!-- Hero Banner -->
-      <section class="relative h-[280px] bg-gray-100 overflow-hidden">
+      <section class="relative h-[200px] lg:h-[280px] bg-gray-100 overflow-hidden">
         <img src="public/images/RE Banners-1.png" alt="Banner 1" class="banner-image active absolute inset-0 w-full h-full object-cover object-center">
         <img src="public/images/RE Banners-2.png" alt="Banner 2" class="banner-image absolute inset-0 w-full h-full object-cover object-center">
         <img src="public/images/RE Banners-3.png" alt="Banner 3" class="banner-image absolute inset-0 w-full h-full object-cover object-center">
@@ -254,41 +288,49 @@
       </section>
 
       <!-- Insights + CTA Tiles Section -->
-      <section class="pt-8 pb-12 px-6 md:px-12">
+      <section class="pt-6 pb-8 lg:pt-8 lg:pb-12 px-4 md:px-12">
         <div class="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
 
-          <!-- Left: Insights Container -->
+          <!-- Left: Insights Card with teaser -->
           <div class="lg:w-3/5">
-            <h2 id="insights" class="text-2xl font-bold text-primary mb-6 text-center">Market Insights</h2>
-            <div id="insights-container" class="bg-white rounded-lg shadow-lg p-6 h-[1178px] overflow-y-auto">
-              <!-- Loading message -->
-              <div id="insights-loading" class="flex items-center justify-center h-64 text-gray-500">
+            <h2 id="insights" class="text-xl lg:text-2xl font-bold text-primary mb-4 lg:mb-6 text-center">Market Insights</h2>
+            <div class="bg-white rounded-lg shadow-lg p-6 lg:max-h-[1175px] lg:overflow-y-auto">
+              <!-- Loading state -->
+              <div id="insights-loading" class="flex items-center justify-center h-32 text-gray-500">
                 <div class="text-center">
                   <div class="inline-block w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin mb-3"></div>
-                  <p class="text-sm italic">Analyzing local market trends... hold please</p>
+                  <p class="text-sm italic">Loading insights...</p>
                 </div>
               </div>
               <!-- No posts placeholder -->
-              <div id="insights-placeholder" class="hidden flex items-center justify-center h-full text-gray-400">
-                <div class="text-center">
-                  <p class="text-2xl font-semibold mb-2">Coming Soon</p>
-                  <p class="text-sm">Blog posts and market updates will appear here</p>
-                </div>
+              <div id="insights-placeholder" class="hidden text-center text-gray-400 py-8">
+                <p class="text-lg font-semibold mb-2">Coming Soon</p>
+                <p class="text-sm">Market updates will appear here</p>
               </div>
-              <div id="insights-posts" class="hidden space-y-6"></div>
+              <!-- Teaser preview -->
+              <div id="insights-teaser" class="hidden">
+                <article id="teaser-article">
+                  <h3 id="teaser-title" class="text-lg font-bold text-primary mb-2"></h3>
+                  <p id="teaser-date" class="text-xs text-gray-500 mb-3"></p>
+                  <div id="teaser-content" class="text-gray-700 text-sm prose line-clamp-6 lg:line-clamp-none"></div>
+                </article>
+                <button onclick="openInsightsModal()" class="mt-4 text-primary font-semibold text-sm hover:underline lg:hidden">
+                  Show more &rarr;
+                </button>
+              </div>
             </div>
           </div>
 
           <!-- Right: CTA Tiles Stacked -->
-          <div class="lg:w-2/5">
-            <h2 class="text-2xl font-bold text-primary mb-6 text-center">How can I help?</h2>
-            <div class="flex flex-col gap-4">
+          <div id="how-can-i-help" class="lg:w-2/5">
+            <h2 class="text-xl lg:text-2xl font-bold text-primary mb-4 lg:mb-6 text-center">How can I help?</h2>
+            <div class="flex flex-col gap-3 lg:gap-4">
               <!-- Want to Sell -->
               <div class="cascade-tile bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group cursor-pointer" onclick="openModal('want-to-sell')">
                 <div class="flex">
-                  <img src="public/images/RE-sold-sign.jpg" alt="Want to Sell" class="w-36 h-40 object-cover group-hover:scale-105 transition duration-300">
-                  <div class="p-4 flex items-center">
-                    <h3 class="text-xl font-bold text-primary">Want to Sell?</h3>
+                  <img src="public/images/RE-sold-sign.jpg" alt="Want to Sell" class="w-36 h-28 lg:w-48 lg:h-36 object-cover group-hover:scale-105 transition duration-300">
+                  <div class="p-3 lg:p-4 flex-1 flex items-center justify-center">
+                    <h3 class="text-lg lg:text-xl font-bold text-primary">Want to Sell?</h3>
                   </div>
                 </div>
               </div>
@@ -296,9 +338,9 @@
               <!-- Want to Buy -->
               <div class="cascade-tile bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group cursor-pointer" onclick="openModal('want-to-buy')">
                 <div class="flex">
-                  <img src="public/images/Home-closing.jpg" alt="Want to Buy" class="w-36 h-40 object-cover group-hover:scale-105 transition duration-300">
-                  <div class="p-4 flex items-center">
-                    <h3 class="text-xl font-bold text-primary">Want to Buy?</h3>
+                  <img src="public/images/Home-closing.jpg" alt="Want to Buy" class="w-36 h-28 lg:w-48 lg:h-36 object-cover group-hover:scale-105 transition duration-300">
+                  <div class="p-3 lg:p-4 flex-1 flex items-center justify-center">
+                    <h3 class="text-lg lg:text-xl font-bold text-primary">Want to Buy?</h3>
                   </div>
                 </div>
               </div>
@@ -306,9 +348,9 @@
               <!-- Want to Build -->
               <div class="cascade-tile bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group cursor-pointer" onclick="openModal('want-to-build')">
                 <div class="flex">
-                  <img src="public/images/New kitchen.jpg" alt="Want to Build" class="w-36 h-40 object-cover group-hover:scale-105 transition duration-300">
-                  <div class="p-4 flex items-center">
-                    <h3 class="text-xl font-bold text-primary">Want to Build?</h3>
+                  <img src="public/images/New kitchen.jpg" alt="Want to Build" class="w-36 h-28 lg:w-48 lg:h-36 object-cover group-hover:scale-105 transition duration-300">
+                  <div class="p-3 lg:p-4 flex-1 flex items-center justify-center">
+                    <h3 class="text-lg lg:text-xl font-bold text-primary">Want to Build?</h3>
                   </div>
                 </div>
               </div>
@@ -316,16 +358,16 @@
               <!-- Want to Invest -->
               <div class="cascade-tile bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group cursor-pointer" onclick="openModal('want-to-invest')">
                 <div class="flex">
-                  <img src="public/images/Investment-home.jpg" alt="Want to Invest" class="w-36 h-40 object-cover group-hover:scale-105 transition duration-300">
-                  <div class="p-4 flex items-center">
-                    <h3 class="text-xl font-bold text-primary">Want to Invest?</h3>
+                  <img src="public/images/Investment-home.jpg" alt="Want to Invest" class="w-36 h-28 lg:w-48 lg:h-36 object-cover group-hover:scale-105 transition duration-300">
+                  <div class="p-3 lg:p-4 flex-1 flex items-center justify-center">
+                    <h3 class="text-lg lg:text-xl font-bold text-primary">Want to Invest?</h3>
                   </div>
                 </div>
               </div>
             </div>
 
             <!-- Featured Listing -->
-            <div id="featured-listing" class="hidden mt-8 pt-6 border-t border-gray-200">
+            <div id="featured-listing" class="hidden mt-8 lg:mt-20 pt-6 border-t border-gray-200">
               <h3 class="text-xl font-bold text-primary mb-4 text-center">Featured Listing</h3>
               <a id="featured-link" href="#" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group">
                 <img id="featured-photo" src="" alt="Featured Listing" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
@@ -345,21 +387,22 @@
       </section>
 
       <!-- Testimonials Row 1 -->
-      <section class="py-12 px-6 md:px-12 bg-white">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <div class="bg-gray-50 rounded-lg p-6">
-            <p class="text-gray-700 italic mb-4">"Jeff was super responsive and very familiar with the local market. He helped talk us through different scenarios, buying vs building, etcetera. Would definitely recommend!"</p>
-            <p class="text-primary font-semibold">— James Eicher</p>
+      <section id="testimonials" class="py-6 lg:py-12 px-6 md:px-12 bg-white">
+        <h2 class="text-xl lg:text-2xl font-bold text-primary mb-4 text-center">Hear what my clients are saying</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 max-w-4xl mx-auto">
+          <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
+            <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"Jeff was super responsive and very familiar with the local market. He helped talk us through different scenarios, buying vs building, etcetera. Would definitely recommend!"</p>
+            <p class="text-primary font-semibold text-sm lg:text-base">— James Eicher</p>
           </div>
-          <div class="bg-gray-50 rounded-lg p-6">
-            <p class="text-gray-700 italic mb-4">"Jeff Hill was a great realtor for us. Any time we had a question or needed information he was always available to answer right away. We have had a great experience selling our home with Jeff."</p>
-            <p class="text-primary font-semibold">— Trish Heibel</p>
+          <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
+            <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"Jeff Hill was a great realtor for us. Any time we had a question or needed information he was always available to answer right away. We have had a great experience selling our home with Jeff."</p>
+            <p class="text-primary font-semibold text-sm lg:text-base">— Trish Heibel</p>
           </div>
         </div>
       </section>
 
       <!-- Buy First Sell Later -->
-      <section class="relative py-10 px-6 md:px-12 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1600&q=80');">
+      <section id="buy-first" class="relative py-10 px-6 md:px-12 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1600&q=80');">
         <div class="absolute inset-0 bg-white/80"></div>
         <div class="relative max-w-3xl mx-auto text-center">
           <img src="https://static.wixstatic.com/media/5d0d57_9876259c18f04938a620a0e3ff2be5e5~mv2.png/v1/fill/w_202,h_208,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5590_PNG.png" alt="Buy First Sell Later" class="w-20 h-auto mx-auto mb-3">
@@ -386,21 +429,21 @@
       </section>
 
       <!-- Testimonials Row 2 -->
-      <section class="py-12 px-6 md:px-12 bg-white">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <div class="bg-gray-50 rounded-lg p-6">
-            <p class="text-gray-700 italic mb-4">"Jeff's extensive industry experience and professionalism were critical to making this a smooth process overall, despite the challenging conditions brought on by COVID-19 in a competitive real estate market! He was always accessible and timely in his communication, would definitely recommend to anyone looking for a trusted and experienced agent in the greater Grand Rapids market."</p>
-            <p class="text-primary font-semibold">— Evan Mlynarek</p>
+      <section class="py-6 lg:py-12 px-6 md:px-12 bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 max-w-4xl mx-auto">
+          <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
+            <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"Jeff's extensive industry experience and professionalism were critical to making this a smooth process overall, despite the challenging conditions brought on by COVID-19 in a competitive real estate market! He was always accessible and timely in his communication, would definitely recommend to anyone looking for a trusted and experienced agent in the greater Grand Rapids market."</p>
+            <p class="text-primary font-semibold text-sm lg:text-base">— Evan Mlynarek</p>
           </div>
-          <div class="bg-gray-50 rounded-lg p-6">
-            <p class="text-gray-700 italic mb-4">"We purchased a new build/spec home from Interra Homes and worked very closely with Jeff Hill. They were an absolute pleasure to work with, immediate with their responses to any issues that arose, and very knowledgeable with the buying/building process."</p>
-            <p class="text-primary font-semibold">— Andrea G.</p>
+          <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
+            <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"We purchased a new build/spec home from Interra Homes and worked very closely with Jeff Hill. They were an absolute pleasure to work with, immediate with their responses to any issues that arose, and very knowledgeable with the buying/building process."</p>
+            <p class="text-primary font-semibold text-sm lg:text-base">— Andrea G.</p>
           </div>
         </div>
       </section>
 
       <!-- Recently Sold -->
-      <section class="py-12 px-6 md:px-12 bg-gray-100">
+      <section id="recently-sold" class="py-12 px-6 md:px-12 bg-gray-100">
         <div class="max-w-6xl mx-auto">
           <h2 class="text-2xl font-bold text-primary mb-8 text-center">Recently Sold</h2>
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -457,8 +500,14 @@
       <!-- Footer -->
       <footer class="bg-gray-900 text-gray-400 py-8 px-6">
         <div class="max-w-6xl mx-auto text-center text-sm">
-          <p>&copy; 2026 Jeff Hill Realty. All rights reserved.</p>
-          <p class="mt-2">Licensed REALTOR® in the State of Michigan</p>
+          <p class="font-semibold text-gray-300">Jeff Hill | JH Realty Partners</p>
+          <p class="mt-2">545 Ada Dr SE #201, Ada, MI 49301</p>
+          <p class="mt-1">
+            <a href="tel:+16165810521" class="hover:text-white">(616) 581-0521</a> |
+            <a href="mailto:grjeff@gmail.com" class="hover:text-white">grjeff@gmail.com</a>
+          </p>
+          <p class="mt-2">Licensed REALTOR® in the State of Michigan | License #6501307462</p>
+          <p class="mt-3 text-xs text-gray-500">&copy; 2026 JH Realty Partners. All rights reserved.</p>
         </div>
       </footer>
 
@@ -528,6 +577,21 @@
     </div>
   </div>
 
+  <!-- Insights Modal -->
+  <div id="insights-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4 lg:pl-80">
+    <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-xl font-bold text-primary">Market Insights</h3>
+          <button onclick="closeInsightsModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+        </div>
+        <div id="insights-modal-content" class="space-y-8">
+          <!-- Posts will be rendered here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Google Apps Script URL for forms and blog
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyyEAW8uHvs2FfyzJZ153i854RATF-As9TWKdzNVrLKBQb8CyhfRFO1_VfCro9dLd-s/exec';
@@ -553,6 +617,30 @@
       'lets-go-look': 'Interested in seeing this property? Fill out the form below and I\'ll reach out to schedule a showing.',
       'buyfirst': 'Move into your new home before selling your current one. No need for temporary housing or contingent offers. Let me show you how the Buy First, Sell Later program works.'
     };
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('menu-icon');
+
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        menu.classList.add('hidden');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('menu-icon');
+      menu.classList.add('hidden');
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    }
 
     function openModal(type) {
       document.getElementById('modal').classList.remove('hidden');
@@ -689,24 +777,41 @@
       }
     }
 
+    // Store posts globally for modal
+    let allBlogPosts = [];
+
     function renderPosts(posts) {
       const placeholder = document.getElementById('insights-placeholder');
-      const postsContainer = document.getElementById('insights-posts');
+      const teaser = document.getElementById('insights-teaser');
+
+      allBlogPosts = posts; // Store for modal
 
       if (posts.length === 0) {
         placeholder.classList.remove('hidden');
-        postsContainer.classList.add('hidden');
+        teaser.classList.add('hidden');
         return;
       }
 
       placeholder.classList.add('hidden');
-      postsContainer.classList.remove('hidden');
+      teaser.classList.remove('hidden');
 
-      // Show up to 3 most recent posts
-      const recentPosts = posts.slice(0, 3);
+      // Show the most recent post as teaser
+      const latestPost = posts[0];
+      const postContent = latestPost.content || latestPost.image || '';
 
-      postsContainer.innerHTML = recentPosts.map(post => {
-        // Use content field, fallback to image field if content is empty (handles column mapping issues)
+      document.getElementById('teaser-title').textContent = latestPost.title;
+      document.getElementById('teaser-date').textContent = new Date(latestPost.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      document.getElementById('teaser-content').innerHTML = postContent;
+    }
+
+    // Insights modal functions
+    function openInsightsModal() {
+      if (allBlogPosts.length === 0) return;
+
+      const modal = document.getElementById('insights-modal');
+      const content = document.getElementById('insights-modal-content');
+
+      content.innerHTML = allBlogPosts.map(post => {
         const postContent = post.content || post.image || '';
         return `
         <article class="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
@@ -716,7 +821,23 @@
         </article>
       `;
       }).join('');
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
     }
+
+    function closeInsightsModal() {
+      const modal = document.getElementById('insights-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    // Close insights modal on background click
+    document.getElementById('insights-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeInsightsModal();
+    });
 
     // Load featured listing
     async function loadFeaturedListing() {
