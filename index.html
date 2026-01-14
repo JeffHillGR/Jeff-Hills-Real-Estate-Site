@@ -97,6 +97,21 @@
     .cascade-tile:nth-child(2) { animation-delay: 0.2s; }
     .cascade-tile:nth-child(3) { animation-delay: 0.3s; }
     .cascade-tile:nth-child(4) { animation-delay: 0.4s; }
+
+    /* Featured listing fade in */
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-slide {
+      animation: fadeSlideIn 0.6s ease-out forwards;
+    }
   </style>
 </head>
 <body class="bg-gray-50">
@@ -162,6 +177,19 @@
           </div>
         </div>
 
+        <!-- Colleague Quotes -->
+        <div class="mt-6 pt-6 border-t border-white/30 bg-white/10 rounded-lg p-4 -mx-2">
+          <p class="text-xs text-white/80 italic leading-relaxed">
+            <span class="text-white font-semibold not-italic">Hear from my fellow real estate colleagues:</span><br><br>
+            "You never know what kind of an agent you are going to get on the other side in a real estate transaction. Jeff was great to work with, always keeping his clients best interest at heart. No drama, solution driven, working together to get us all to the closing table. I'd do another deal with him any day!"
+            <span class="block not-italic text-white/70 mt-1">— Joni McArthur, EXP Realty</span>
+          </p>
+          <p class="text-xs text-white/80 italic leading-relaxed mt-4">
+            "What truly set Jeff apart was his remarkable responsiveness. He was always available to answer our questions, no matter how big or small, and kept me informed every step of the way. This clear and consistent communication made a potentially stressful process feel smooth and manageable."
+            <span class="block not-italic text-white/70 mt-1">— Marilyn Hazard, Broker, Keller Williams GRN</span>
+          </p>
+        </div>
+
         <!-- Brokerage -->
         <div class="mt-6 pt-6 border-t border-white/30">
           <p class="text-sm text-white">JH Realty Partners</p>
@@ -172,7 +200,6 @@
         <!-- Menu -->
         <nav class="mt-6 pt-6 border-t border-white/30">
           <ul class="space-y-2">
-            <li><a href="#insights" class="block py-2 px-4 rounded hover:bg-white/10 transition">Insights</a></li>
             <li><a href="#contact" class="block py-2 px-4 rounded hover:bg-white/10 transition">Contact</a></li>
           </ul>
         </nav>
@@ -196,7 +223,7 @@
 
           <!-- Left: Insights Container -->
           <div class="lg:w-3/5">
-            <h2 id="insights" class="text-2xl font-bold text-primary mb-6">Market Insights</h2>
+            <h2 id="insights" class="text-2xl font-bold text-primary mb-6 text-center">Market Insights</h2>
             <div id="insights-container" class="bg-white rounded-lg shadow-lg p-6 min-h-[680px]">
               <!-- Loading message -->
               <div id="insights-loading" class="flex items-center justify-center h-64 text-gray-500">
@@ -218,7 +245,7 @@
 
           <!-- Right: CTA Tiles Stacked -->
           <div class="lg:w-2/5">
-            <h2 class="text-2xl font-bold text-primary mb-6 text-center lg:text-left">How can I help?</h2>
+            <h2 class="text-2xl font-bold text-primary mb-6 text-center">How can I help?</h2>
             <div class="flex flex-col gap-4">
               <!-- Want to Sell -->
               <div class="cascade-tile bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group cursor-pointer" onclick="openModal('want-to-sell')">
@@ -234,8 +261,9 @@
               <div class="cascade-tile bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group cursor-pointer" onclick="openModal('want-to-buy')">
                 <div class="flex">
                   <img src="public/images/Home-closing.jpg" alt="Want to Buy" class="w-36 h-40 object-cover group-hover:scale-105 transition duration-300">
-                  <div class="p-4 flex items-center">
+                  <div class="p-4 flex flex-col justify-center">
                     <h3 class="text-xl font-bold text-primary">Want to Buy?</h3>
+                    <p class="text-xs text-gray-600 mt-2 leading-relaxed">I've helped hundreds of buyers craft meaningful offers to successfully get the home they want. My success rate is over 90% in multiple offer situations, and I work tirelessly through inspections, through closing and post-close follow ups.</p>
                   </div>
                 </div>
               </div>
@@ -259,6 +287,20 @@
                   </div>
                 </div>
               </div>
+            </div>
+
+            <!-- Featured Listing -->
+            <div id="featured-listing" class="hidden mt-8 pt-6 border-t border-gray-200">
+              <h3 class="text-xl font-bold text-primary mb-4 text-center">Featured Listing</h3>
+              <a id="featured-link" href="#" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group">
+                <img id="featured-photo" src="" alt="Featured Listing" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
+                <div class="p-4">
+                  <p id="featured-price" class="text-xl font-bold text-primary"></p>
+                  <p id="featured-address" class="text-gray-700 text-sm mt-1"></p>
+                  <p id="featured-details" class="text-gray-500 text-sm mt-1"></p>
+                  <p id="featured-agent" class="text-gray-400 text-xs mt-2 italic"></p>
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -617,8 +659,49 @@
       `).join('');
     }
 
-    // Load posts on page load
+    // Load featured listing
+    async function loadFeaturedListing() {
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL + '?type=listing');
+        const data = await response.json();
+
+        if (data && data.photo) {
+          document.getElementById('featured-photo').src = data.photo;
+          document.getElementById('featured-price').textContent = data.price;
+          document.getElementById('featured-address').textContent = data.address;
+
+          // Build details string
+          const details = [];
+          if (data.beds) details.push(data.beds + ' bed');
+          if (data.baths) details.push(data.baths + ' bath');
+          if (data.sqft) details.push(data.sqft + ' sqft');
+          document.getElementById('featured-details').textContent = details.join(' • ');
+
+          // Listed by
+          if (data.agent) {
+            document.getElementById('featured-agent').textContent = 'Listed by ' + data.agent;
+          }
+
+          // MLS link
+          if (data.mls) {
+            document.getElementById('featured-link').href = data.mls;
+          } else {
+            document.getElementById('featured-link').removeAttribute('href');
+            document.getElementById('featured-link').style.cursor = 'default';
+          }
+
+          const listingEl = document.getElementById('featured-listing');
+          listingEl.classList.remove('hidden');
+          listingEl.classList.add('animate-fade-slide');
+        }
+      } catch (error) {
+        console.error('Error loading featured listing:', error);
+      }
+    }
+
+    // Load posts and featured listing on page load
     loadBlogPosts();
+    loadFeaturedListing();
   </script>
 </body>
 </html>
