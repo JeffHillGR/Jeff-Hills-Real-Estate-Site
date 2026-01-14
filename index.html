@@ -198,8 +198,15 @@
           <div class="lg:w-3/5">
             <h2 id="insights" class="text-2xl font-bold text-primary mb-6">Market Insights</h2>
             <div id="insights-container" class="bg-white rounded-lg shadow-lg p-6 min-h-[680px]">
-              <!-- Blog posts will be loaded here by JavaScript -->
-              <div id="insights-placeholder" class="flex items-center justify-center h-full text-gray-400">
+              <!-- Loading message -->
+              <div id="insights-loading" class="flex items-center justify-center h-64 text-gray-500">
+                <div class="text-center">
+                  <div class="inline-block w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin mb-3"></div>
+                  <p class="text-sm italic">Analyzing local market trends... hold please</p>
+                </div>
+              </div>
+              <!-- No posts placeholder -->
+              <div id="insights-placeholder" class="hidden flex items-center justify-center h-full text-gray-400">
                 <div class="text-center">
                   <p class="text-2xl font-semibold mb-2">Coming Soon</p>
                   <p class="text-sm">Blog posts and market updates will appear here</p>
@@ -538,44 +545,76 @@
 
     setInterval(rotateBanners, 6000);
 
-    // Load blog posts from Google Sheets
+    // Load blog posts from Google Sheets with caching
     async function loadBlogPosts() {
+      const loading = document.getElementById('insights-loading');
       const placeholder = document.getElementById('insights-placeholder');
       const postsContainer = document.getElementById('insights-posts');
 
+      // Check for cached posts first
+      const cached = localStorage.getItem('blogPostsCache');
+      if (cached) {
+        try {
+          const cachedData = JSON.parse(cached);
+          // Show cached posts immediately
+          renderPosts(cachedData.posts);
+          loading.classList.add('hidden');
+        } catch (e) {
+          // Invalid cache, ignore
+        }
+      }
+
+      // Fetch fresh data
       try {
         const response = await fetch(GOOGLE_SCRIPT_URL);
         const posts = await response.json();
 
-        if (posts.length === 0) {
-          placeholder.classList.remove('hidden');
-          postsContainer.classList.add('hidden');
-          return;
-        }
+        // Cache the posts
+        localStorage.setItem('blogPostsCache', JSON.stringify({
+          posts: posts,
+          timestamp: Date.now()
+        }));
 
-        placeholder.classList.add('hidden');
-        postsContainer.classList.remove('hidden');
-
-        // Show up to 3 most recent posts
-        const recentPosts = posts.slice(0, 3);
-
-        postsContainer.innerHTML = recentPosts.map(post => `
-          <article class="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
-            <div class="flex gap-4">
-              ${post.image ? `<img src="${post.image}" alt="${post.title}" class="w-28 h-28 object-cover rounded-lg flex-shrink-0">` : ''}
-              <div class="flex-1">
-                <h3 class="text-lg font-bold text-primary mb-1">${post.title}</h3>
-                <p class="text-xs text-gray-500 mb-2">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                <div class="text-gray-700 text-sm prose prose-sm">${post.content}</div>
-              </div>
-            </div>
-          </article>
-        `).join('');
+        loading.classList.add('hidden');
+        renderPosts(posts);
       } catch (error) {
         console.error('Error loading blog posts:', error);
+        loading.classList.add('hidden');
+        // If no cached posts, show placeholder
+        if (!cached) {
+          placeholder.classList.remove('hidden');
+        }
+      }
+    }
+
+    function renderPosts(posts) {
+      const placeholder = document.getElementById('insights-placeholder');
+      const postsContainer = document.getElementById('insights-posts');
+
+      if (posts.length === 0) {
         placeholder.classList.remove('hidden');
         postsContainer.classList.add('hidden');
+        return;
       }
+
+      placeholder.classList.add('hidden');
+      postsContainer.classList.remove('hidden');
+
+      // Show up to 3 most recent posts
+      const recentPosts = posts.slice(0, 3);
+
+      postsContainer.innerHTML = recentPosts.map(post => `
+        <article class="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
+          <div class="flex gap-4">
+            ${post.image ? `<img src="${post.image}" alt="${post.title}" class="w-28 h-28 object-cover rounded-lg flex-shrink-0">` : ''}
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-primary mb-1">${post.title}</h3>
+              <p class="text-xs text-gray-500 mb-2">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+              <div class="text-gray-700 text-sm prose prose-sm">${post.content}</div>
+            </div>
+          </div>
+        </article>
+      `).join('');
     }
 
     // Load posts on page load
