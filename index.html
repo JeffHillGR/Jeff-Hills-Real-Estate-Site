@@ -321,23 +321,6 @@
           </p>
         </div>
 
-        <!-- Colleague Quotes -->
-        <div class="mt-6 pt-6 border-t border-white/30">
-          <p class="text-base text-white font-semibold mb-4">Hear from my fellow real estate colleagues:</p>
-          <div class="bg-white/80 rounded-lg p-4 mb-3">
-            <p class="text-sm text-black italic leading-relaxed">
-              "You never know what kind of an agent you are going to get on the other side in a real estate transaction. Jeff was great to work with, always keeping his clients best interest at heart. No drama, solution driven, working together to get us all to the closing table. I'd do another deal with him any day!"
-            </p>
-            <p class="text-sm text-primary font-semibold mt-2">— Joni McArthur, EXP Realty</p>
-          </div>
-          <div class="bg-white/80 rounded-lg p-4">
-            <p class="text-sm text-black italic leading-relaxed">
-              "What truly set Jeff apart was his remarkable responsiveness. He was always available to answer our questions, no matter how big or small, and kept me informed every step of the way. This clear and consistent communication made a potentially stressful process feel smooth and manageable."
-            </p>
-            <p class="text-sm text-primary font-semibold mt-2">— Marilyn Hazard, Broker, Keller Williams GRN</p>
-          </div>
-        </div>
-
         <!-- Contact -->
         <div class="mt-6 pt-6 border-t border-white/30">
           <h3 class="text-sm font-semibold text-white mb-3">Contact</h3>
@@ -371,6 +354,14 @@
             Get in Touch
           </button>
         </div>
+
+        <!-- Buy First Sell Later -->
+        <div class="mt-6 pt-6 border-white/30 text-center">
+          <a href="#buy-first" onclick="smoothScroll(event, 'buy-first')" class="inline-block hover:opacity-80 transition">
+            <img src="https://static.wixstatic.com/media/5d0d57_9876259c18f04938a620a0e3ff2be5e5~mv2.png/v1/fill/w_202,h_208,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5590_PNG.png" alt="Buy First Sell Later" class="w-36 h-auto mx-auto">
+          </a>
+        </div>
+
       </div>
     </aside>
 
@@ -392,7 +383,7 @@
           <!-- Left: Insights Card with teaser -->
           <div class="lg:w-3/5">
             <h2 id="insights" class="text-xl lg:text-2xl font-bold text-primary mb-4 lg:mb-6 text-center">Market Insights</h2>
-            <div class="bg-white rounded-lg shadow-lg p-6 lg:max-h-[1175px] lg:overflow-y-auto">
+            <div class="bg-white rounded-lg shadow-lg p-6 lg:h-[1225px] lg:flex lg:flex-col">
               <!-- Loading state -->
               <div id="insights-loading" class="flex items-center justify-center h-32 text-gray-500">
                 <div class="text-center">
@@ -406,12 +397,21 @@
                 <p class="text-sm">Market updates will appear here</p>
               </div>
               <!-- Teaser preview -->
-              <div id="insights-teaser" class="hidden">
-                <article id="teaser-article">
+              <div id="insights-teaser" class="hidden lg:flex lg:flex-col lg:h-full">
+                <article id="teaser-article" class="lg:flex-1 lg:overflow-hidden">
                   <h3 id="teaser-title" class="text-lg font-bold text-primary mb-2"></h3>
                   <p id="teaser-date" class="text-xs text-gray-500 mb-3"></p>
-                  <div id="teaser-content" class="text-gray-700 text-sm prose line-clamp-6 lg:line-clamp-none"></div>
+                  <div id="teaser-content" class="text-gray-700 text-sm prose line-clamp-6 lg:line-clamp-none lg:h-full lg:overflow-hidden"></div>
                 </article>
+                <!-- Navigation between insights -->
+                <div id="insights-nav" class="mt-6 pt-4 border-t border-gray-200 flex justify-between items-center lg:mt-auto lg:flex-shrink-0">
+                  <button id="prev-insight" onclick="showPrevInsight()" class="hidden text-primary text-sm hover:underline text-left">
+                    <span class="text-gray-400">&larr;</span> Previous insight - <span id="prev-insight-title"></span>
+                  </button>
+                  <button id="next-insight" onclick="showNextInsight()" class="hidden text-primary text-sm hover:underline text-right ml-auto">
+                    Next insight - <span id="next-insight-title"></span> <span class="text-gray-400">&rarr;</span>
+                  </button>
+                </div>
                 <button onclick="openInsightsModal()" class="mt-4 text-primary font-semibold text-sm hover:underline lg:hidden">
                   Show more &rarr;
                 </button>
@@ -486,8 +486,8 @@
 
       <!-- Testimonials Row 1 -->
       <section id="testimonials" class="py-6 lg:py-12 px-6 md:px-12 bg-white">
-        <h2 class="text-xl lg:text-2xl font-bold text-primary mb-4 text-center">Hear what my clients are saying</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 max-w-4xl mx-auto">
+        <h2 class="text-xl lg:text-2xl font-bold text-primary mb-4 text-center">The reviews are in...</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
           <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
             <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"Jeff was super responsive and very familiar with the local market. He helped talk us through different scenarios, buying vs building, etcetera. Would definitely recommend!"</p>
             <p class="text-primary font-semibold text-sm lg:text-base">— James Eicher</p>
@@ -495,6 +495,14 @@
           <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
             <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"Jeff Hill was a great realtor for us. Any time we had a question or needed information he was always available to answer right away. We have had a great experience selling our home with Jeff."</p>
             <p class="text-primary font-semibold text-sm lg:text-base">— Trish Heibel</p>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
+            <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"You never know what kind of an agent you are going to get on the other side in a real estate transaction. Jeff was great to work with, always keeping his clients best interest at heart. No drama, solution driven, working together to get us all to the closing table. I'd do another deal with him any day!"</p>
+            <p class="text-primary font-semibold text-sm lg:text-base">— Joni McArthur, EXP Realty</p>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
+            <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"What truly set Jeff apart was his remarkable responsiveness. He was always available to answer our questions, no matter how big or small, and kept me informed every step of the way. This clear and consistent communication made a potentially stressful process feel smooth and manageable."</p>
+            <p class="text-primary font-semibold text-sm lg:text-base">— Marilyn Hazard, Broker, Keller Williams GRN</p>
           </div>
         </div>
       </section>
@@ -876,16 +884,57 @@
       }
     }
 
-    // Store posts globally for modal
+    // Store posts globally for modal and navigation
     let allBlogPosts = [];
+    let currentInsightIndex = 0;
+    const MAX_INSIGHTS = 4; // Only show up to 4 insights
+
+    // Auto-link plain URLs in text (but not URLs already in tags)
+    function autoLinkUrls(html) {
+      // Protect all HTML tags (anchors, images, etc.) from being modified
+      // Use angle brackets in placeholder so URL regex stops at them
+      const tags = [];
+      html = html.replace(/<[^>]+>/gi, (match) => {
+        tags.push(match);
+        return `<PROTECTED_${tags.length - 1}>`;
+      });
+
+      // Now convert plain URLs to links (only in text content)
+      const urlPattern = /(https?:\/\/[^\s<>"']+)/gi;
+      html = html.replace(urlPattern, '<a href="$1" target="_blank" class="text-primary hover:underline">$1</a>');
+
+      // Restore original tags
+      html = html.replace(/<PROTECTED_(\d+)>/g, (match, index) => tags[parseInt(index)]);
+
+      return html;
+    }
 
     function renderPosts(posts) {
       const placeholder = document.getElementById('insights-placeholder');
       const teaser = document.getElementById('insights-teaser');
 
-      allBlogPosts = posts; // Store for modal
+      // Extract order from content if embedded as <!--ORDER:X-->
+      posts.forEach(post => {
+        const orderMatch = (post.content || '').match(/<!--ORDER:(\d+)-->/);
+        if (orderMatch) {
+          post.order = parseInt(orderMatch[1], 10);
+          post.content = post.content.replace(/<!--ORDER:\d+-->/g, '');
+        }
+      });
 
-      if (posts.length === 0) {
+      // Sort by order field if present, otherwise by date
+      posts.sort((a, b) => {
+        if (a.order !== undefined && b.order !== undefined) {
+          return a.order - b.order;
+        }
+        return new Date(b.date) - new Date(a.date);
+      });
+
+      // Limit to MAX_INSIGHTS posts
+      allBlogPosts = posts.slice(0, MAX_INSIGHTS);
+      currentInsightIndex = 0;
+
+      if (allBlogPosts.length === 0) {
         placeholder.classList.remove('hidden');
         teaser.classList.add('hidden');
         return;
@@ -894,13 +943,54 @@
       placeholder.classList.add('hidden');
       teaser.classList.remove('hidden');
 
-      // Show the most recent post as teaser
-      const latestPost = posts[0];
-      const postContent = latestPost.content || latestPost.image || '';
+      showInsight(0);
+    }
 
-      document.getElementById('teaser-title').textContent = latestPost.title;
-      document.getElementById('teaser-date').textContent = new Date(latestPost.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-      document.getElementById('teaser-content').innerHTML = postContent;
+    function showInsight(index) {
+      if (index < 0 || index >= allBlogPosts.length) return;
+
+      currentInsightIndex = index;
+      const post = allBlogPosts[index];
+      const postContent = post.content || post.image || '';
+
+      document.getElementById('teaser-title').textContent = post.title;
+      document.getElementById('teaser-date').textContent = new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      document.getElementById('teaser-content').innerHTML = autoLinkUrls(postContent);
+
+      updateInsightNav();
+    }
+
+    function updateInsightNav() {
+      const prevBtn = document.getElementById('prev-insight');
+      const nextBtn = document.getElementById('next-insight');
+      const prevTitle = document.getElementById('prev-insight-title');
+      const nextTitle = document.getElementById('next-insight-title');
+
+      // Show/hide prev button (older posts)
+      if (currentInsightIndex < allBlogPosts.length - 1) {
+        const prevPost = allBlogPosts[currentInsightIndex + 1];
+        prevTitle.textContent = prevPost.title;
+        prevBtn.classList.remove('hidden');
+      } else {
+        prevBtn.classList.add('hidden');
+      }
+
+      // Show/hide next button (newer posts)
+      if (currentInsightIndex > 0) {
+        const nextPost = allBlogPosts[currentInsightIndex - 1];
+        nextTitle.textContent = nextPost.title;
+        nextBtn.classList.remove('hidden');
+      } else {
+        nextBtn.classList.add('hidden');
+      }
+    }
+
+    function showPrevInsight() {
+      showInsight(currentInsightIndex + 1);
+    }
+
+    function showNextInsight() {
+      showInsight(currentInsightIndex - 1);
     }
 
     // Insights modal functions
@@ -916,7 +1006,7 @@
         <article class="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
           <h3 class="text-lg font-bold text-primary mb-1">${post.title}</h3>
           <p class="text-xs text-gray-500 mb-3">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-          <div class="text-gray-700 text-sm prose">${postContent}</div>
+          <div class="text-gray-700 text-sm prose">${autoLinkUrls(postContent)}</div>
         </article>
       `;
       }).join('');
@@ -976,6 +1066,31 @@
       } catch (error) {
         console.error('Error loading featured listing:', error);
       }
+    }
+
+    // Smooth scroll with custom duration
+    function smoothScroll(e, targetId) {
+      e.preventDefault();
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      const startPosition = window.pageYOffset;
+      const targetPosition = target.getBoundingClientRect().top + startPosition;
+      const distance = targetPosition - startPosition;
+      const duration = 1200; // 1.2 seconds
+      let startTime = null;
+
+      function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        // Ease out cubic for a gentle deceleration
+        const ease = 1 - Math.pow(1 - progress, 3);
+        window.scrollTo(0, startPosition + distance * ease);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+      }
+
+      requestAnimationFrame(animation);
     }
 
     // Load posts and featured listing on page load

@@ -92,6 +92,51 @@
       color: white;
       border-color: #5a8f4e;
     }
+    /* Ensure Quill link tooltip is visible */
+    .ql-tooltip {
+      z-index: 1001 !important;
+      background: white !important;
+      border: 1px solid #ccc !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+      padding: 8px 12px !important;
+      border-radius: 4px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
+    .ql-tooltip.ql-editing {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
+    .ql-tooltip input[type="text"] {
+      width: 200px !important;
+      padding: 4px 8px !important;
+      border: 1px solid #ccc !important;
+      border-radius: 4px !important;
+    }
+    .ql-tooltip a.ql-action,
+    .ql-tooltip a.ql-remove {
+      margin-left: 8px !important;
+    }
+    /* Override hidden state when editing */
+    .ql-tooltip.ql-editing.ql-hidden {
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+    .ql-container {
+      position: relative;
+    }
+    /* Resizable editor */
+    #editor {
+      border: 1px solid #ccc;
+      border-radius: 0 0 4px 4px;
+      min-height: 200px;
+      max-height: 600px;
+      overflow-y: auto;
+      resize: vertical;
+    }
+    #editor .ql-editor {
+      min-height: 180px;
+    }
   </style>
 </head>
 <body class="bg-gray-100 min-h-screen">
@@ -156,12 +201,7 @@
                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent">
               </div>
 
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Featured Image URL</label>
-                <input type="text" id="post-image" placeholder="https://example.com/image.jpg"
-                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent">
-                <p class="text-xs text-gray-500 mt-1">Paste an image URL or leave blank</p>
-              </div>
+              <input type="hidden" id="post-image" value="">
 
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Content *</label>
@@ -264,6 +304,86 @@
           <div id="listing-status" class="mt-4 text-sm hidden"></div>
         </div>
       </div>
+
+      <!-- AI Tools Reference -->
+      <div class="mt-8">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-1">Top 10 AI Tools to Supercharge Your Business <span class="font-normal text-gray-500">(and potentially plug into this website)</span></h2>
+          <p class="text-sm text-gray-500 mb-4">As of January 2026</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <a href="https://structurely.com" target="_blank" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
+              <img src="https://www.google.com/s2/favicons?domain=structurely.com&sz=32" alt="" class="w-6 h-6 rounded">
+              <div>
+                <span class="font-semibold text-gray-800">Structurely</span>
+                <p class="text-sm text-gray-500">AI chat assistant for 24/7 lead engagement</p>
+              </div>
+            </a>
+            <a href="https://cincpro.com" target="_blank" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
+              <img src="https://www.google.com/s2/favicons?domain=cincpro.com&sz=32" alt="" class="w-6 h-6 rounded">
+              <div>
+                <span class="font-semibold text-gray-800">CINC</span>
+                <p class="text-sm text-gray-500">Complete lead management system with AI nurturing</p>
+              </div>
+            </a>
+            <a href="https://ylopo.com" target="_blank" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
+              <img src="https://www.google.com/s2/favicons?domain=ylopo.com&sz=32" alt="" class="w-6 h-6 rounded">
+              <div>
+                <span class="font-semibold text-gray-800">Ylopo</span>
+                <p class="text-sm text-gray-500">AI-driven digital marketing and lead generation</p>
+              </div>
+            </a>
+            <a href="https://smartzip.com" target="_blank" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
+              <img src="https://www.google.com/s2/favicons?domain=smartzip.com&sz=32" alt="" class="w-6 h-6 rounded">
+              <div>
+                <span class="font-semibold text-gray-800">SmartZip</span>
+                <p class="text-sm text-gray-500">Predictive analytics to find likely sellers</p>
+              </div>
+            </a>
+            <a href="https://aivalabs.com" target="_blank" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
+              <img src="https://www.google.com/s2/favicons?domain=aivalabs.com&sz=32" alt="" class="w-6 h-6 rounded">
+              <div>
+                <span class="font-semibold text-gray-800">Aiva Labs</span>
+                <p class="text-sm text-gray-500">Automated lead response platform</p>
+              </div>
+            </a>
+            <a href="https://hifello.com" target="_blank" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
+              <img src="https://www.google.com/s2/favicons?domain=hifello.com&sz=32" alt="" class="w-6 h-6 rounded">
+              <div>
+                <span class="font-semibold text-gray-800">Fello</span>
+                <p class="text-sm text-gray-500">Works within your CRM to score and enrich leads</p>
+              </div>
+            </a>
+            <a href="https://canva.com" target="_blank" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
+              <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=32" alt="" class="w-6 h-6 rounded">
+              <div>
+                <span class="font-semibold text-gray-800">Canva AI</span>
+                <p class="text-sm text-gray-500">Create visually appealing ads, social media posts and mailers</p>
+              </div>
+            </a>
+            <a href="https://realestatecontent.ai" target="_blank" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
+              <img src="https://www.google.com/s2/favicons?domain=realestatecontent.ai&sz=32" alt="" class="w-6 h-6 rounded">
+              <div>
+                <span class="font-semibold text-gray-800">RealEstateContent.ai</span>
+                <p class="text-sm text-gray-500">Generating and scheduling social media posts</p>
+              </div>
+            </a>
+            <a href="https://matterport.com" target="_blank" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
+              <img src="https://www.google.com/s2/favicons?domain=matterport.com&sz=32" alt="" class="w-6 h-6 rounded">
+              <div>
+                <span class="font-semibold text-gray-800">Matterport AI</span>
+                <p class="text-sm text-gray-500">AI-enhanced 3D virtual tour creation</p>
+              </div>
+            </a>
+            <a href="https://restb.ai" target="_blank" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
+              <img src="https://www.google.com/s2/favicons?domain=restb.ai&sz=32" alt="" class="w-6 h-6 rounded">
+              <div>
+                <span class="font-semibold text-gray-800">Restb.ai</span>
+                <p class="text-sm text-gray-500">Automatically analyzes listing photos and tags features to improve searchability</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 
@@ -343,6 +463,19 @@
         if (url) {
           var range = quill.getSelection();
           quill.insertEmbed(range ? range.index : 0, 'image', url);
+        }
+      });
+
+      // Override link button to use prompt dialog
+      toolbar.addHandler('link', function() {
+        var range = quill.getSelection();
+        if (!range || range.length === 0) {
+          alert('Please select some text first to create a link.');
+          return;
+        }
+        var url = prompt('Enter link URL:');
+        if (url) {
+          quill.format('link', url);
         }
       });
 
@@ -431,13 +564,37 @@
           return;
         }
 
-        listEl.innerHTML = postsCache.map(post => `
+        // Extract order from content if embedded
+        postsCache.forEach(post => {
+          const orderMatch = post.content.match(/<!--ORDER:(\d+)-->/);
+          if (orderMatch) {
+            post.order = parseInt(orderMatch[1], 10);
+            post.content = post.content.replace(/<!--ORDER:\d+-->/g, '');
+          }
+        });
+
+        // Sort by order field if present, otherwise by date
+        postsCache.sort((a, b) => {
+          if (a.order !== undefined && b.order !== undefined) {
+            return a.order - b.order;
+          }
+          return new Date(b.date) - new Date(a.date);
+        });
+
+        listEl.innerHTML = postsCache.map((post, index) => `
           <div class="border border-gray-200 rounded-lg p-3">
-            <h3 class="font-semibold text-gray-800 text-sm truncate">${post.title}</h3>
-            <p class="text-xs text-gray-500 mt-1">${new Date(post.date).toLocaleDateString()}</p>
-            <div class="flex gap-2 mt-2">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-bold text-primary w-6">#${index + 1}</span>
+              <h3 class="font-semibold text-gray-800 text-sm truncate flex-1">${post.title}</h3>
+            </div>
+            <p class="text-xs text-gray-500 ml-8">${new Date(post.date).toLocaleDateString()}</p>
+            <div class="flex items-center gap-3 mt-2 ml-8">
               <button onclick="editPost('${post.id}')" class="text-xs text-primary hover:text-accent">Edit</button>
               <button onclick="deletePost('${post.id}')" class="text-xs text-red-500 hover:text-red-700">Delete</button>
+              <span class="text-gray-300">|</span>
+              <span class="text-xs text-gray-500">Move</span>
+              <button onclick="movePost(${index}, -1)" class="text-gray-400 hover:text-primary text-sm ${index === 0 ? 'invisible' : ''}" title="Move up">↑</button>
+              <button onclick="movePost(${index}, 1)" class="text-gray-400 hover:text-primary text-sm ${index === postsCache.length - 1 ? 'invisible' : ''}" title="Move down">↓</button>
             </div>
           </div>
         `).join('');
@@ -541,6 +698,72 @@
       } catch (error) {
         console.error('Error deleting post:', error);
         alert('Error deleting post. Please try again.');
+      }
+    }
+
+    async function movePost(index, direction) {
+      const newIndex = index + direction;
+      if (newIndex < 0 || newIndex >= postsCache.length) return;
+
+      // Swap in cache
+      const temp = postsCache[index];
+      postsCache[index] = postsCache[newIndex];
+      postsCache[newIndex] = temp;
+
+      // Assign order numbers based on position (0 = first/top)
+      postsCache.forEach((post, i) => {
+        post.order = i;
+      });
+
+      // Re-render the list immediately for responsiveness
+      const listEl = document.getElementById('posts-list');
+      listEl.innerHTML = postsCache.map((post, i) => `
+        <div class="border border-gray-200 rounded-lg p-3">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-xs font-bold text-primary w-6">#${i + 1}</span>
+            <h3 class="font-semibold text-gray-800 text-sm truncate flex-1">${post.title}</h3>
+          </div>
+          <p class="text-xs text-gray-500 ml-8">${new Date(post.date).toLocaleDateString()}</p>
+          <div class="flex items-center gap-3 mt-2 ml-8">
+            <button onclick="editPost('${post.id}')" class="text-xs text-primary hover:text-accent">Edit</button>
+            <button onclick="deletePost('${post.id}')" class="text-xs text-red-500 hover:text-red-700">Delete</button>
+            <span class="text-gray-300">|</span>
+            <span class="text-xs text-gray-500">Move</span>
+            <button onclick="movePost(${i}, -1)" class="text-gray-400 hover:text-primary text-sm ${i === 0 ? 'invisible' : ''}" title="Move up">↑</button>
+            <button onclick="movePost(${i}, 1)" class="text-gray-400 hover:text-primary text-sm ${i === postsCache.length - 1 ? 'invisible' : ''}" title="Move down">↓</button>
+          </div>
+        </div>
+      `).join('');
+
+      // Save ALL posts with their order numbers embedded in content
+      try {
+        for (const post of postsCache) {
+          // Strip any existing order marker from content
+          let cleanContent = post.content.replace(/<!--ORDER:\d+-->/g, '');
+          // Add order marker at the start of content
+          let contentWithOrder = `<!--ORDER:${post.order}-->${cleanContent}`;
+
+          await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'blog',
+              action: 'save',
+              editId: post.id,
+              id: post.id,
+              title: post.title,
+              image: post.image || '',
+              content: contentWithOrder,
+              date: post.date,
+              order: post.order,
+              updated: new Date().toISOString()
+            })
+          });
+        }
+        console.log('Order saved successfully');
+      } catch (error) {
+        console.error('Error saving order:', error);
       }
     }
 
