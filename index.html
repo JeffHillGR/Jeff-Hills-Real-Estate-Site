@@ -273,6 +273,7 @@
           <nav class="space-y-1">
             <a href="#insights" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Market Insights</a>
             <a href="#how-can-i-help" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">How Can I Help?</a>
+            <a href="#listings" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Featured Homes / MLS</a>
             <a href="#testimonials" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Testimonials</a>
             <a href="#buy-first" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Buy First, Sell Later</a>
             <a href="#recently-sold" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Recently Sold</a>
@@ -328,9 +329,9 @@
             <a href="tel:+16165810521">(616) 581-0521</a>
           </p>
           <p class="text-sm text-white mt-1">
-            <a href="mailto:grjeff@gmail.com">grjeff@gmail.com</a>
+            <a href="mailto:grjeff@gmail.com?subject=Getting%20In%20Touch">grjeff@gmail.com</a>
           </p>
-          <div class="flex gap-4 mt-4 justify-center">
+          <div class="flex gap-4 mt-8 justify-center">
             <a href="https://www.linkedin.com/in/jeffahill/" target="_blank" class="text-white hover:text-white/80 text-2xl" title="LinkedIn">
               <i class="fab fa-linkedin"></i>
             </a>
@@ -348,17 +349,23 @@
           </div>
         </div>
 
-        <!-- Menu -->
-        <div class="mt-6 pt-6 border-t border-white/30">
-          <button onclick="openModal('general')" class="w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition">
+        <!-- Navigation Buttons -->
+        <div class="mt-6 pt-6 border-t border-white/30 space-y-3">
+          <a href="mailto:grjeff@gmail.com?subject=Getting%20In%20Touch" class="block w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition text-center">
             Get in Touch
-          </button>
-        </div>
-
-        <!-- Buy First Sell Later -->
-        <div class="mt-6 pt-6 border-white/30 text-center">
-          <a href="#buy-first" onclick="smoothScroll(event, 'buy-first')" class="inline-block hover:opacity-80 transition">
-            <img src="https://static.wixstatic.com/media/5d0d57_9876259c18f04938a620a0e3ff2be5e5~mv2.png/v1/fill/w_202,h_208,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5590_PNG.png" alt="Buy First Sell Later" class="w-36 h-auto mx-auto">
+          </a>
+          <a href="#buy-first" onclick="smoothScroll(event, 'buy-first')" class="flex items-center justify-center gap-2 w-full bg-white hover:bg-gray-100 text-primary font-semibold py-2 px-4 rounded-lg transition">
+            <img src="https://static.wixstatic.com/media/5d0d57_9876259c18f04938a620a0e3ff2be5e5~mv2.png/v1/fill/w_202,h_208,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5590_PNG.png" alt="Buy First Sell Later" class="w-10 h-auto">
+            <span>Buy First, Sell Later</span>
+          </a>
+          <a href="#listings" onclick="smoothScroll(event, 'listings')" class="block w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition text-center">
+            Featured Homes / MLS
+          </a>
+          <a href="#testimonials" onclick="smoothScroll(event, 'testimonials')" class="block w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition text-center">
+            Testimonials
+          </a>
+          <a href="#recently-sold" onclick="smoothScroll(event, 'recently-sold')" class="block w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition text-center">
+            Recently Sold
           </a>
         </div>
 
@@ -512,14 +519,41 @@
         <div class="absolute inset-0 bg-white/80"></div>
         <div class="relative max-w-3xl mx-auto text-center">
           <img src="https://static.wixstatic.com/media/5d0d57_9876259c18f04938a620a0e3ff2be5e5~mv2.png/v1/fill/w_202,h_208,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5590_PNG.png" alt="Buy First Sell Later" class="w-32 h-auto mx-auto mb-3">
-          <p class="text-gray-700 mb-2">With help from local experts</p>
           <div class="inline-block bg-[#8fad6b] px-6 py-2 mb-4">
             <h2 class="text-2xl md:text-3xl font-serif text-white tracking-wide">BUY FIRST SELL LATER</h2>
           </div>
           <p class="text-gray-700 italic mb-6 max-w-2xl mx-auto">Can't qualify to buy a new home before selling your current one? No Problem. JH Realty has a solution that works - when others can't.</p>
-          <a href="https://www.buyfirstselllater.com/_files/ugd/5d0d57_cd93176397594694aed45a484d298ae8.pdf" target="_blank" class="inline-block bg-[#8fad6b] hover:bg-[#7a9a5a] text-white font-bold py-3 px-8 rounded transition text-lg">
-            Get a FREE Guide!
-          </a>
+
+          <!-- How It Works -->
+          <div class="max-w-3xl mx-auto mb-8">
+            <h4 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8">How It Works</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div>
+                <span class="inline-flex w-16 h-16 bg-[#8fad6b] text-white rounded-full items-center justify-center font-bold text-3xl mb-4">1</span>
+                <p class="text-xl font-bold text-gray-800 mb-2">Get pre-approved</p>
+                <p class="text-sm text-gray-600">Shop with confidence before you list your current home</p>
+              </div>
+              <div>
+                <span class="inline-flex w-16 h-16 bg-[#8fad6b] text-white rounded-full items-center justify-center font-bold text-3xl mb-4">2</span>
+                <p class="text-xl font-bold text-gray-800 mb-2">Buy your next home</p>
+                <p class="text-sm text-gray-600">Make a strong, non-contingent offer, move in, and then sell your current home when the time is right</p>
+              </div>
+              <div>
+                <span class="inline-flex w-16 h-16 bg-[#8fad6b] text-white rounded-full items-center justify-center font-bold text-3xl mb-4">3</span>
+                <p class="text-xl font-bold text-gray-800 mb-2">Sell when you're ready</p>
+                <p class="text-sm text-gray-600">Skip the stress and sell your previous home with peace of mind</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://www.buyfirstselllater.com/_files/ugd/5d0d57_cd93176397594694aed45a484d298ae8.pdf" target="_blank" class="bg-[#8fad6b] hover:bg-[#7a9a5a] text-white font-bold py-3 rounded transition text-lg text-center sm:w-52">
+              Get a FREE Guide!
+            </a>
+            <a href="mailto:grjeff@gmail.com?subject=Tell%20Me%20About%20The%20Buy%20First%2C%20Sell%20Later%20Program" class="bg-[#8fad6b] hover:bg-[#7a9a5a] text-white font-bold py-3 rounded transition text-lg text-center sm:w-52">
+              Email Me
+            </a>
+          </div>
         </div>
       </section>
 
@@ -598,9 +632,9 @@
         <div class="max-w-2xl mx-auto text-center">
           <h2 class="text-2xl font-bold mb-4">Ready to Get Started?</h2>
           <p class="text-gray-200 mb-8">Whether you're buying, selling, or just have questions, I'm here to help.</p>
-          <button onclick="openModal('general')" class="bg-white hover:bg-gray-100 text-primary font-bold py-3 px-8 rounded-lg transition">
+          <a href="mailto:grjeff@gmail.com?subject=Can%20we%20talk%20real%20estate%20Jeff%3F" class="inline-block bg-white hover:bg-gray-100 text-primary font-bold py-3 px-8 rounded-lg transition">
             Contact Me
-          </button>
+          </a>
         </div>
       </section>
 
@@ -611,7 +645,7 @@
           <p class="mt-2">545 Ada Dr SE #201, Ada, MI 49301</p>
           <p class="mt-1">
             <a href="tel:+16165810521" class="hover:text-white">(616) 581-0521</a> |
-            <a href="mailto:grjeff@gmail.com" class="hover:text-white">grjeff@gmail.com</a>
+            <a href="mailto:grjeff@gmail.com?subject=Can%20we%20talk%20real%20estate%20Jeff%3F" class="hover:text-white">grjeff@gmail.com</a>
           </p>
           <p class="mt-2">Licensed REALTOR® in the State of Michigan | License #6501307462</p>
           <p class="mt-3 text-xs text-gray-500">&copy; 2026 JH Realty Partners. All rights reserved.</p>
