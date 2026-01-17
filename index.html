@@ -367,6 +367,9 @@
           <a href="#recently-sold" onclick="smoothScroll(event, 'recently-sold')" class="block w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition text-center">
             Recently Sold
           </a>
+          <button onclick="openOpenHouseModal()" class="block w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition text-center">
+            Open House Registration
+          </button>
         </div>
 
       </div>
@@ -733,6 +736,67 @@
     </div>
   </div>
 
+  <!-- Open House Registration Modal -->
+  <div id="openhouse-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4 lg:pl-80">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold text-primary">Open House Registration</h3>
+          <button onclick="closeOpenHouseModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+        </div>
+
+        <p class="text-gray-600 text-sm mb-6">Register for upcoming open houses and be the first to know about new listings.</p>
+
+        <!-- Success State -->
+        <div id="openhouse-success" class="hidden text-center py-8">
+          <div class="text-5xl mb-4">&#10003;</div>
+          <h4 class="text-xl font-bold text-primary mb-2">You're Registered!</h4>
+          <p class="text-gray-600 mb-2">Thanks for signing up. I'll be in touch with open house details.</p>
+          <p class="text-gray-600 mb-6 italic">- Jeff Hill</p>
+          <button onclick="closeOpenHouseModal()" class="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-6 rounded-lg transition">
+            Close
+          </button>
+        </div>
+
+        <form id="openhouse-form" onsubmit="submitOpenHouseForm(event)">
+          <div class="space-y-4">
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                <input type="text" name="first_name" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+                <input type="text" name="last_name" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+              <input type="email" name="email" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent">
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
+              <input type="tel" name="phone" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent">
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+              <textarea name="notes" rows="3" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="Any specific properties or areas you're interested in?"></textarea>
+            </div>
+          </div>
+
+          <button type="submit" id="openhouse-submit-btn" class="w-full mt-6 bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg transition">
+            Register
+          </button>
+
+          <p id="openhouse-status" class="mt-4 text-center text-sm hidden"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Google Apps Script URL for forms and blog
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyyEAW8uHvs2FfyzJZ153i854RATF-As9TWKdzNVrLKBQb8CyhfRFO1_VfCro9dLd-s/exec';
@@ -1061,6 +1125,70 @@
     document.getElementById('insights-modal').addEventListener('click', function(e) {
       if (e.target === this) closeInsightsModal();
     });
+
+    // Open House Registration modal functions
+    function openOpenHouseModal() {
+      document.getElementById('openhouse-modal').classList.remove('hidden');
+      document.getElementById('openhouse-modal').classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeOpenHouseModal() {
+      document.getElementById('openhouse-modal').classList.add('hidden');
+      document.getElementById('openhouse-modal').classList.remove('flex');
+      document.body.style.overflow = '';
+      document.getElementById('openhouse-form').reset();
+      document.getElementById('openhouse-form').classList.remove('hidden');
+      document.getElementById('openhouse-success').classList.add('hidden');
+      document.getElementById('openhouse-status').classList.add('hidden');
+    }
+
+    // Close open house modal on background click
+    document.getElementById('openhouse-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeOpenHouseModal();
+    });
+
+    // Open House form submission
+    async function submitOpenHouseForm(e) {
+      e.preventDefault();
+      const form = e.target;
+      const submitBtn = document.getElementById('openhouse-submit-btn');
+      const status = document.getElementById('openhouse-status');
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Registering...';
+
+      const formData = {
+        timestamp: new Date().toISOString(),
+        first_name: form.first_name.value,
+        last_name: form.last_name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        inquiry_type: 'open-house-registration',
+        message: form.notes.value || ''
+      };
+
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        // Show success state
+        document.getElementById('openhouse-form').classList.add('hidden');
+        document.getElementById('openhouse-success').classList.remove('hidden');
+        form.reset();
+      } catch (error) {
+        status.textContent = 'Something went wrong. Please try again or call me directly.';
+        status.classList.remove('hidden', 'text-green-600');
+        status.classList.add('text-red-600');
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Register';
+    }
 
     // Load featured listing
     async function loadFeaturedListing() {
