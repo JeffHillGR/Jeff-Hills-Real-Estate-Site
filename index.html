@@ -271,12 +271,27 @@
         <!-- Mobile menu dropdown -->
         <div id="mobile-menu" class="hidden mt-3 pt-3 border-t border-white/20">
           <nav class="space-y-1">
-            <a href="#insights" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Market Insights</a>
-            <a href="#how-can-i-help" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">How Can I Help?</a>
-            <a href="#listings" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Featured Homes / MLS</a>
-            <a href="#testimonials" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Testimonials</a>
-            <a href="#buy-first" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Buy First, Sell Later</a>
-            <a href="#recently-sold" onclick="closeMobileMenu()" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">Recently Sold</a>
+            <a href="#insights" onclick="closeMobileMenu()" class="flex items-center py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">
+              <i class="fas fa-lightbulb mr-2 w-5 text-center text-xs"></i>Market Insights
+            </a>
+            <a href="#buy-first" onclick="closeMobileMenu()" class="flex items-center py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">
+              <img src="https://static.wixstatic.com/media/5d0d57_9876259c18f04938a620a0e3ff2be5e5~mv2.png/v1/fill/w_202,h_208,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5590_PNG.png" alt="" class="w-5 h-auto mr-2">Buy First, Sell Later
+            </a>
+            <a href="mailto:grjeff@gmail.com?subject=Getting%20In%20Touch" class="flex items-center py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">
+              <i class="fas fa-paper-plane mr-2 w-5 text-center text-xs"></i>Get in Touch
+            </a>
+            <a href="#listings" onclick="closeMobileMenu()" class="flex items-center py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">
+              <i class="fas fa-house-chimney mr-2 w-5 text-center text-xs"></i>Featured Homes / MLS
+            </a>
+            <a href="#testimonials" onclick="closeMobileMenu()" class="flex items-center py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">
+              <i class="fas fa-comments mr-2 w-5 text-center text-xs"></i>Testimonials
+            </a>
+            <a href="#recently-sold" onclick="closeMobileMenu()" class="flex items-center py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">
+              <i class="fas fa-handshake mr-2 w-5 text-center text-xs"></i>Recently Sold
+            </a>
+            <button onclick="closeMobileMenu(); openOpenHouseModal()" class="flex items-center w-full py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm text-left">
+              <i class="fas fa-sign-hanging mr-2 w-5 text-center text-xs"></i>Open House Registration
+            </button>
             <div class="pt-2 mt-2 border-t border-white/20">
               <a href="tel:+16165810521" class="block py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">
                 <i class="fas fa-phone mr-2 text-xs"></i>(616) 581-0521
@@ -351,24 +366,23 @@
 
         <!-- Navigation Buttons -->
         <div class="mt-6 pt-6 border-t border-white/30 space-y-3">
-          <a href="mailto:grjeff@gmail.com?subject=Getting%20In%20Touch" class="block w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition text-center">
-            Get in Touch
+          <a href="#buy-first" onclick="smoothScroll(event, 'buy-first')" class="flex items-center w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition">
+            <img src="https://static.wixstatic.com/media/5d0d57_9876259c18f04938a620a0e3ff2be5e5~mv2.png/v1/fill/w_202,h_208,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5590_PNG.png" alt="Buy First Sell Later" class="w-7 h-auto mr-2 -ml-1">Buy First, Sell Later
           </a>
-          <a href="#buy-first" onclick="smoothScroll(event, 'buy-first')" class="flex items-center justify-center gap-2 w-full bg-white hover:bg-gray-100 text-primary font-semibold py-2 px-4 rounded-lg transition">
-            <img src="https://static.wixstatic.com/media/5d0d57_9876259c18f04938a620a0e3ff2be5e5~mv2.png/v1/fill/w_202,h_208,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5590_PNG.png" alt="Buy First Sell Later" class="w-10 h-auto">
-            <span>Buy First, Sell Later</span>
+          <a href="mailto:grjeff@gmail.com?subject=Getting%20In%20Touch" class="flex items-center w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition">
+            <i class="fas fa-paper-plane mr-3 w-5 text-center"></i>Get in Touch
           </a>
-          <a href="#listings" onclick="smoothScroll(event, 'listings')" class="block w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition text-center">
-            Featured Homes / MLS
+          <a href="#listings" onclick="smoothScroll(event, 'listings')" class="flex items-center w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition">
+            <i class="fas fa-house-chimney mr-3 w-5 text-center"></i>Featured Homes / MLS
           </a>
-          <a href="#testimonials" onclick="smoothScroll(event, 'testimonials')" class="block w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition text-center">
-            Testimonials
+          <a href="#testimonials" onclick="smoothScroll(event, 'testimonials')" class="flex items-center w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition">
+            <i class="fas fa-comments mr-3 w-5 text-center"></i>Testimonials
           </a>
-          <a href="#recently-sold" onclick="smoothScroll(event, 'recently-sold')" class="block w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition text-center">
-            Recently Sold
+          <a href="#recently-sold" onclick="smoothScroll(event, 'recently-sold')" class="flex items-center w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition">
+            <i class="fas fa-handshake mr-3 w-5 text-center"></i>Recently Sold
           </a>
-          <button onclick="openOpenHouseModal()" class="block w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition text-center">
-            Open House Registration
+          <button onclick="openOpenHouseModal()" class="flex items-center w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition">
+            <i class="fas fa-sign-hanging mr-3 w-5 text-center"></i>Open House Registration
           </button>
         </div>
 
@@ -426,6 +440,10 @@
                   Show more &rarr;
                 </button>
               </div>
+              <!-- Newsletter Subscribe Button -->
+              <button onclick="openNewsletterModal()" class="mt-6 w-full bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2">
+                <i class="fas fa-envelope"></i> Subscribe to my newsletter
+              </button>
             </div>
           </div>
 
@@ -521,7 +539,7 @@
       <section id="buy-first" class="relative py-10 px-6 md:px-12 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1600&q=80');">
         <div class="absolute inset-0 bg-white/80"></div>
         <div class="relative max-w-3xl mx-auto text-center">
-          <img src="https://static.wixstatic.com/media/5d0d57_9876259c18f04938a620a0e3ff2be5e5~mv2.png/v1/fill/w_202,h_208,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5590_PNG.png" alt="Buy First Sell Later" class="w-32 h-auto mx-auto mb-3">
+          <img src="https://static.wixstatic.com/media/5d0d57_9876259c18f04938a620a0e3ff2be5e5~mv2.png/v1/fill/w_202,h_208,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5590_PNG.png" alt="Buy First Sell Later" class="w-40 h-auto mx-auto mb-3">
           <div class="inline-block bg-[#8fad6b] px-6 py-2 mb-4">
             <h2 class="text-2xl md:text-3xl font-serif text-white tracking-wide">BUY FIRST SELL LATER</h2>
           </div>
@@ -789,6 +807,69 @@
           </button>
 
           <p id="openhouse-status" class="mt-4 text-center text-sm hidden"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter Modal -->
+  <div id="newsletter-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4 lg:pl-80">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold text-primary">Subscribe to My Newsletter</h3>
+          <button onclick="closeNewsletterModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+        </div>
+
+        <!-- Success State -->
+        <div id="newsletter-success" class="hidden text-center py-8">
+          <div class="text-5xl mb-4">&#10003;</div>
+          <h4 class="text-xl font-bold text-primary mb-2">You're Subscribed!</h4>
+          <p class="text-gray-600 mb-6 italic">- Jeff Hill</p>
+          <button onclick="closeNewsletterModal()" class="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-6 rounded-lg transition">
+            Close
+          </button>
+        </div>
+
+        <form id="newsletter-form" onsubmit="submitNewsletterForm(event)">
+          <div class="space-y-4">
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                <input type="text" name="first_name" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+                <input type="text" name="last_name" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+              <input type="email" name="email" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent">
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+              <input type="tel" name="phone" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent">
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+              <input type="text" name="address" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="street, city, state, zip code">
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+              <textarea name="notes" rows="2" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="particular interests you'd like me to feature"></textarea>
+            </div>
+          </div>
+
+          <button type="submit" id="newsletter-submit-btn" class="w-full mt-6 bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg transition">
+            Sign me up Jeff!
+          </button>
+
+          <p id="newsletter-status" class="mt-4 text-center text-sm hidden"></p>
         </form>
       </div>
     </div>
@@ -1185,6 +1266,71 @@
 
       submitBtn.disabled = false;
       submitBtn.textContent = 'Register';
+    }
+
+    // Newsletter modal functions
+    function openNewsletterModal() {
+      document.getElementById('newsletter-modal').classList.remove('hidden');
+      document.getElementById('newsletter-modal').classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeNewsletterModal() {
+      document.getElementById('newsletter-modal').classList.add('hidden');
+      document.getElementById('newsletter-modal').classList.remove('flex');
+      document.body.style.overflow = '';
+      document.getElementById('newsletter-form').reset();
+      document.getElementById('newsletter-form').classList.remove('hidden');
+      document.getElementById('newsletter-success').classList.add('hidden');
+      document.getElementById('newsletter-status').classList.add('hidden');
+    }
+
+    // Close newsletter modal on background click
+    document.getElementById('newsletter-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeNewsletterModal();
+    });
+
+    // Newsletter form submission
+    async function submitNewsletterForm(e) {
+      e.preventDefault();
+      const form = e.target;
+      const submitBtn = document.getElementById('newsletter-submit-btn');
+      const status = document.getElementById('newsletter-status');
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Signing up...';
+
+      const formData = {
+        timestamp: new Date().toISOString(),
+        first_name: form.first_name.value,
+        last_name: form.last_name.value,
+        email: form.email.value,
+        phone: form.phone.value || '',
+        address: form.address.value || '',
+        inquiry_type: 'newsletter',
+        message: form.notes.value || ''
+      };
+
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        // Show success state
+        document.getElementById('newsletter-form').classList.add('hidden');
+        document.getElementById('newsletter-success').classList.remove('hidden');
+        form.reset();
+      } catch (error) {
+        status.textContent = 'Something went wrong. Please try again.';
+        status.classList.remove('hidden', 'text-green-600');
+        status.classList.add('text-red-600');
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Sign me up Jeff!';
     }
 
     // Load featured listing
