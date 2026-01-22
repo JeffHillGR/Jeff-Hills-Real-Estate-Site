@@ -162,8 +162,20 @@
     <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full mx-4">
       <h1 class="text-2xl font-bold text-primary mb-6 text-center">Admin Login</h1>
       <form onsubmit="checkPassword(event)">
-        <input type="password" id="password-input" placeholder="Enter password"
-          class="w-full border border-gray-300 rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-primary focus:border-transparent">
+        <div class="relative mb-4">
+          <input type="password" id="password-input" placeholder="Enter password"
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 focus:ring-2 focus:ring-primary focus:border-transparent">
+          <button type="button" onclick="togglePasswordVisibility()"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700">
+            <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+            <svg id="eye-off-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+            </svg>
+          </button>
+        </div>
         <button type="submit" class="w-full bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-lg transition">
           Login
         </button>
@@ -198,6 +210,12 @@
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Title *</label>
                 <input type="text" id="post-title" placeholder="Enter post title"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent">
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Author</label>
+                <input type="text" id="post-author" placeholder="Jeff Hill"
                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent">
               </div>
 
@@ -388,8 +406,8 @@
   </div>
 
   <script>
-    const ADMIN_PASSWORD = 'jeff2024';
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyyEAW8uHvs2FfyzJZ153i854RATF-As9TWKdzNVrLKBQb8CyhfRFO1_VfCro9dLd-s/exec';
+    const ADMIN_PASSWORD = 'jeff2026';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz9g7BFlNMQnt3Jas-94ZiG0iHvaXAmyaDkr6GWJWlZT6O4Y6CnXjQebEAcF-hD2sv2/exec';
 
     let quill;
     let postsCache = [];
@@ -397,6 +415,22 @@
     // Check if already logged in
     if (localStorage.getItem('adminLoggedIn') === 'true') {
       showDashboard();
+    }
+
+    function togglePasswordVisibility() {
+      const input = document.getElementById('password-input');
+      const eyeIcon = document.getElementById('eye-icon');
+      const eyeOffIcon = document.getElementById('eye-off-icon');
+
+      if (input.type === 'password') {
+        input.type = 'text';
+        eyeIcon.classList.add('hidden');
+        eyeOffIcon.classList.remove('hidden');
+      } else {
+        input.type = 'password';
+        eyeIcon.classList.remove('hidden');
+        eyeOffIcon.classList.add('hidden');
+      }
     }
 
     function checkPassword(e) {
@@ -439,7 +473,7 @@
       });
 
       // Character count with soft limit
-      var CHAR_LIMIT = 2500;
+      var CHAR_LIMIT = 3000;
       function updateCharCount() {
         var text = quill.getText().trim();
         var count = text.length;
@@ -606,6 +640,7 @@
 
     async function savePost() {
       const title = document.getElementById('post-title').value.trim();
+      const author = document.getElementById('post-author').value.trim();
       const image = document.getElementById('post-image').value.trim();
       const content = quill.root.innerHTML;
       const editId = document.getElementById('edit-post-id').value;
@@ -624,6 +659,7 @@
         type: 'blog',
         action: 'save',
         title,
+        author,
         image,
         content,
         updated: new Date().toISOString()
@@ -669,6 +705,7 @@
       if (!post) return;
 
       document.getElementById('post-title').value = post.title;
+      document.getElementById('post-author').value = post.author || '';
       document.getElementById('post-image').value = post.image || '';
       quill.root.innerHTML = post.content;
       document.getElementById('edit-post-id').value = id;
@@ -769,6 +806,7 @@
 
     function clearEditor() {
       document.getElementById('post-title').value = '';
+      document.getElementById('post-author').value = '';
       document.getElementById('post-image').value = '';
       quill.root.innerHTML = '';
       document.getElementById('edit-post-id').value = '';

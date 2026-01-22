@@ -424,9 +424,13 @@
               <div id="insights-teaser" class="hidden lg:flex lg:flex-col lg:h-full">
                 <article id="teaser-article" class="lg:flex-1 lg:overflow-hidden">
                   <h3 id="teaser-title" class="text-lg font-bold text-primary mb-2"></h3>
+                  <p id="teaser-author" class="text-xs text-gray-600 mb-1"></p>
                   <p id="teaser-date" class="text-xs text-gray-500 mb-3"></p>
                   <div id="teaser-content" class="text-gray-700 text-sm prose line-clamp-6 lg:line-clamp-none lg:h-full lg:overflow-hidden"></div>
                 </article>
+                <button onclick="openInsightsModal()" class="mt-4 text-primary font-semibold text-sm hover:underline text-center block w-full">
+                  Read more &rarr;
+                </button>
                 <!-- Navigation between insights -->
                 <div id="insights-nav" class="mt-6 pt-4 border-t border-gray-200 flex justify-between items-center lg:mt-auto lg:flex-shrink-0">
                   <button id="prev-insight" onclick="showPrevInsight()" class="hidden text-primary text-sm hover:underline text-left">
@@ -436,12 +440,9 @@
                     Next insight - <span id="next-insight-title"></span> <span class="text-gray-400">&rarr;</span>
                   </button>
                 </div>
-                <button onclick="openInsightsModal()" class="mt-4 text-primary font-semibold text-sm hover:underline lg:hidden">
-                  Show more &rarr;
-                </button>
               </div>
               <!-- Newsletter Subscribe Button -->
-              <button onclick="openNewsletterModal()" class="mt-6 w-full bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2">
+              <button onclick="openNewsletterModal()" class="mt-10 w-full bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2">
                 <i class="fas fa-envelope"></i> Subscribe to my newsletter
               </button>
             </div>
@@ -877,7 +878,7 @@
 
   <script>
     // Google Apps Script URL for forms and blog
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyyEAW8uHvs2FfyzJZ153i854RATF-As9TWKdzNVrLKBQb8CyhfRFO1_VfCro9dLd-s/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz9g7BFlNMQnt3Jas-94ZiG0iHvaXAmyaDkr6GWJWlZT6O4Y6CnXjQebEAcF-hD2sv2/exec';
 
     // Modal handling
     const modalTitles = {
@@ -1082,6 +1083,10 @@
       // Restore original tags
       html = html.replace(/<PROTECTED_(\d+)>/g, (match, index) => tags[parseInt(index)]);
 
+      // Add styling to existing anchor tags (from Quill editor)
+      // This ensures all links are visible and clickable
+      html = html.replace(/<a\s+/gi, '<a target="_blank" class="text-primary hover:underline" ');
+
       return html;
     }
 
@@ -1130,6 +1135,15 @@
       const postContent = post.content || post.image || '';
 
       document.getElementById('teaser-title').textContent = post.title;
+
+      const authorEl = document.getElementById('teaser-author');
+      if (post.author) {
+        authorEl.textContent = 'By ' + post.author;
+        authorEl.style.display = 'block';
+      } else {
+        authorEl.style.display = 'none';
+      }
+
       document.getElementById('teaser-date').textContent = new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
       document.getElementById('teaser-content').innerHTML = autoLinkUrls(postContent);
 
@@ -1176,16 +1190,20 @@
       const modal = document.getElementById('insights-modal');
       const content = document.getElementById('insights-modal-content');
 
-      content.innerHTML = allBlogPosts.map(post => {
-        const postContent = post.content || post.image || '';
-        return `
-        <article class="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
-          <h3 class="text-lg font-bold text-primary mb-1">${post.title}</h3>
-          <p class="text-xs text-gray-500 mb-3">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      // Show only the CURRENT post, not all posts
+      const currentPost = allBlogPosts[currentInsightIndex];
+      const postContent = currentPost.content || currentPost.image || '';
+
+      const authorHtml = currentPost.author ? `<p class="text-xs text-gray-600 mb-1">By ${currentPost.author}</p>` : '';
+
+      content.innerHTML = `
+        <article>
+          <h3 class="text-lg font-bold text-primary mb-1">${currentPost.title}</h3>
+          ${authorHtml}
+          <p class="text-xs text-gray-500 mb-3">${new Date(currentPost.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
           <div class="text-gray-700 text-sm prose">${autoLinkUrls(postContent)}</div>
         </article>
       `;
-      }).join('');
 
       modal.classList.remove('hidden');
       modal.classList.add('flex');
