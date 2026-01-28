@@ -1359,7 +1359,12 @@
 
         if (data && data.photo) {
           document.getElementById('featured-photo').src = data.photo;
-          document.getElementById('featured-price').textContent = data.price;
+          // Format price with $ and commas if it's just a number
+          let priceDisplay = data.price;
+          if (priceDisplay && !String(priceDisplay).includes('$')) {
+            priceDisplay = '$' + Number(priceDisplay).toLocaleString();
+          }
+          document.getElementById('featured-price').textContent = priceDisplay;
           document.getElementById('featured-address').textContent = data.address;
 
           // Build details string
