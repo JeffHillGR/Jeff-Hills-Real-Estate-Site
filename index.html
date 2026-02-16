@@ -1460,9 +1460,9 @@
       const modal = document.getElementById('share-modal');
       const shareUrl = document.getElementById('share-url');
 
-      // Generate share URL for current insight using post ID
+      // Generate share URL for current insight using post ID or index
       const currentPost = allBlogPosts[currentInsightIndex];
-      const postId = currentPost ? currentPost.id : '0';
+      const postId = (currentPost && currentPost.id) ? currentPost.id : currentInsightIndex.toString();
       shareUrl.value = `https://jeffhillrealty.vercel.app/api/share/${postId}`;
 
       modal.classList.remove('hidden');
