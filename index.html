@@ -1463,7 +1463,7 @@
       // Generate share URL for current insight using post ID
       const currentPost = allBlogPosts[currentInsightIndex];
       const postId = currentPost ? currentPost.id : '0';
-      shareUrl.value = `https://www.jeffhillrealty.com/api/share/${postId}`;
+      shareUrl.value = `https://jeffhillrealty.vercel.app/api/share/${postId}`;
 
       modal.classList.remove('hidden');
       modal.classList.add('flex');

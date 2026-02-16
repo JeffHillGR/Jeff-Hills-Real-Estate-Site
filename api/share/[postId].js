@@ -37,7 +37,7 @@ export default async function handler(req, res) {
     }
     // Fallback to default image
     if (!imageUrl) {
-      imageUrl = 'https://www.jeffhillrealty.com/public/images/jeff-headshot.jpg';
+      imageUrl = 'https://jeffhillrealty.vercel.app/public/images/jeff-headshot.jpg';
     }
 
     // Sanitize strings
@@ -66,7 +66,7 @@ export default async function handler(req, res) {
       formattedDate = post.date || '';
     }
 
-    const siteUrl = 'https://www.jeffhillrealty.com';
+    const siteUrl = 'https://jeffhillrealty.vercel.app';
     const shareUrl = `${siteUrl}/api/share/${postId}`;
 
     const html = `<!DOCTYPE html>
@@ -207,12 +207,12 @@ function redirectToMain(res, message) {
   <meta charset="UTF-8">
   <meta property="og:title" content="Jeff Hill Realty">
   <meta property="og:description" content="Your trusted West Michigan real estate professional">
-  <meta property="og:image" content="https://www.jeffhillrealty.com/images/headshot.png">
-  <script>window.location.replace('https://www.jeffhillrealty.com');</script>
+  <meta property="og:image" content="https://jeffhillrealty.vercel.app/public/images/jeff-headshot.jpg">
+  <script>window.location.replace('https://jeffhillrealty.vercel.app');</script>
 </head>
 <body>
   <p>Redirecting...</p>
-  <a href="https://www.jeffhillrealty.com">Click here</a>
+  <a href="https://jeffhillrealty.vercel.app">Click here</a>
 </body>
 </html>`;
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
