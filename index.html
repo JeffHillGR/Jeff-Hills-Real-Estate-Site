@@ -387,7 +387,10 @@
           </button>
         </div>
 
-        <p class="mt-6 text-sm text-black text-center font-medium">Website Powered by REFresh<br>&copy; 2026</p>
+        <div class="text-sm text-center font-medium px-4 py-3 rounded-lg border-2" style="margin-top: 24px; background-color: #333; border-color: #444; color: #4ade80;">
+          <img src="public/images/REFresh-logo-house.png" alt="REFresh" style="height: 40px; display: block; margin: 0 auto 8px auto;">
+          Website Powered by REFresh<br>&copy; 2026
+        </div>
 
       </div>
     </aside>
@@ -431,9 +434,14 @@
                   <p id="teaser-date" class="text-xs text-gray-500 mb-3"></p>
                   <div id="teaser-content" class="text-gray-700 text-sm prose line-clamp-6 lg:line-clamp-none lg:h-full lg:overflow-hidden"></div>
                 </article>
-                <button onclick="openInsightsModal()" class="mt-4 text-primary font-semibold text-sm hover:underline text-center block w-full">
-                  Read more &rarr;
-                </button>
+                <div class="mt-4 flex justify-center gap-4">
+                  <button onclick="openInsightsModal()" class="text-primary font-semibold text-sm hover:underline">
+                    Read more &rarr;
+                  </button>
+                  <button onclick="openShareModal()" class="text-gray-500 hover:text-primary text-sm flex items-center gap-1">
+                    <i class="fas fa-share-alt"></i> Share
+                  </button>
+                </div>
                 <!-- Navigation between insights -->
                 <div id="insights-nav" class="mt-6 pt-4 border-t border-gray-200 flex justify-between items-center lg:mt-auto lg:flex-shrink-0">
                   <button id="prev-insight" onclick="showPrevInsight()" class="hidden text-primary text-sm hover:underline text-left">
@@ -878,6 +886,26 @@
 
           <p id="newsletter-status" class="mt-4 text-center text-sm hidden"></p>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div id="share-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4 lg:pl-80">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold text-primary">Share This Insight</h3>
+          <button onclick="closeShareModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+        </div>
+        <p class="text-gray-600 text-sm mb-4">Copy the link below to share this article on Facebook, LinkedIn, or any platform:</p>
+        <div class="flex gap-2">
+          <input type="text" id="share-url" readonly class="flex-1 border border-gray-300 rounded-lg px-4 py-2 text-sm bg-gray-50">
+          <button onclick="copyShareUrl()" id="copy-btn" class="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded-lg transition">
+            Copy
+          </button>
+        </div>
+        <p id="copy-success" class="mt-2 text-sm text-green-600 hidden">Link copied to clipboard!</p>
       </div>
     </div>
   </div>
@@ -1426,6 +1454,50 @@
 
       requestAnimationFrame(animation);
     }
+
+    // Share modal functions
+    function openShareModal() {
+      const modal = document.getElementById('share-modal');
+      const shareUrl = document.getElementById('share-url');
+
+      // Generate share URL for current insight
+      const postIndex = currentInsightIndex;
+      shareUrl.value = `https://www.jeffhillrealty.com/api/share/${postIndex}`;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+
+      // Reset copy button state
+      document.getElementById('copy-btn').textContent = 'Copy';
+      document.getElementById('copy-success').classList.add('hidden');
+    }
+
+    function closeShareModal() {
+      const modal = document.getElementById('share-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function copyShareUrl() {
+      const shareUrl = document.getElementById('share-url');
+      shareUrl.select();
+      shareUrl.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(shareUrl.value);
+
+      document.getElementById('copy-btn').textContent = 'Copied!';
+      document.getElementById('copy-success').classList.remove('hidden');
+
+      setTimeout(() => {
+        document.getElementById('copy-btn').textContent = 'Copy';
+      }, 2000);
+    }
+
+    // Close share modal on background click
+    document.getElementById('share-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeShareModal();
+    });
 
     // Load posts and featured listing on page load
     loadBlogPosts();
