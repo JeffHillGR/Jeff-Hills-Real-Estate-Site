@@ -37,7 +37,7 @@ export default async function handler(req, res) {
     }
     // Fallback to default image
     if (!imageUrl) {
-      imageUrl = 'https://www.jeffhillrealty.com/images/headshot.png';
+      imageUrl = 'https://www.jeffhillrealty.com/public/images/jeff-headshot.jpg';
     }
 
     // Sanitize strings
