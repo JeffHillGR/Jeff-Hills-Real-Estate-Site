@@ -3,8 +3,8 @@ export default async function handler(req, res) {
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz9g7BFlNMQnt3Jas-94ZiG0iHvaXAmyaDkr6GWJWlZT6O4Y6CnXjQebEAcF-hD2sv2/exec';
 
   try {
-    // Fetch blog posts from Google Sheets
-    const response = await fetch(GOOGLE_SCRIPT_URL);
+    // Fetch blog posts from Google Sheets (jeff_blog type for Jeff's posts)
+    const response = await fetch(GOOGLE_SCRIPT_URL + '?type=jeff_blog');
     const posts = await response.json();
 
     if (!posts || posts.length === 0) {
