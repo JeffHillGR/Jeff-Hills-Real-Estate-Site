@@ -290,6 +290,9 @@
             <a href="#recently-sold" onclick="closeMobileMenu()" class="flex items-center py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">
               <i class="fas fa-handshake mr-2 w-5 text-center text-xs"></i>Recently Sold
             </a>
+            <a href="#community" onclick="closeMobileMenu()" class="flex items-center py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm">
+              <i class="fas fa-camera mr-2 w-5 text-center text-xs"></i>Community
+            </a>
             <button onclick="closeMobileMenu(); openOpenHouseModal()" class="flex items-center w-full py-2 px-3 text-white/90 hover:bg-white/10 rounded text-sm text-left">
               <i class="fas fa-sign-hanging mr-2 w-5 text-center text-xs"></i>Open House Registration
             </button>
@@ -381,6 +384,9 @@
           </a>
           <a href="#recently-sold" onclick="smoothScroll(event, 'recently-sold')" class="flex items-center w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition">
             <i class="fas fa-handshake mr-3 w-5 text-center"></i>Recently Sold
+          </a>
+          <a href="#community" onclick="smoothScroll(event, 'community')" class="flex items-center w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition">
+            <i class="fas fa-camera mr-3 w-5 text-center"></i>Community
           </a>
           <button onclick="openOpenHouseModal()" class="flex items-center w-full bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-6 rounded-lg transition">
             <i class="fas fa-sign-hanging mr-3 w-5 text-center"></i>Open House Registration
@@ -526,10 +532,10 @@
         </div>
       </section>
 
-      <!-- Testimonials Row 1 -->
+      <!-- Testimonials - 3x2 Grid -->
       <section id="testimonials" class="py-6 lg:py-12 px-6 md:px-12 bg-white">
-        <h2 class="text-xl lg:text-2xl font-bold text-primary mb-4 text-center">The reviews are in...</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+        <h2 class="text-xl lg:text-2xl font-bold text-primary mb-6 text-center">The reviews are in...</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 max-w-6xl mx-auto">
           <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
             <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"Jeff was super responsive and very familiar with the local market. He helped talk us through different scenarios, buying vs building, etcetera. Would definitely recommend!"</p>
             <p class="text-primary font-semibold text-sm lg:text-base">— James Eicher</p>
@@ -545,6 +551,14 @@
           <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
             <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"What truly set Jeff apart was his remarkable responsiveness. He was always available to answer our questions, no matter how big or small, and kept me informed every step of the way. This clear and consistent communication made a potentially stressful process feel smooth and manageable."</p>
             <p class="text-primary font-semibold text-sm lg:text-base">— Marilyn Hazard, Broker, Keller Williams GRN</p>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
+            <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"Jeff's extensive industry experience and professionalism were critical to making this a smooth process overall, despite the challenging conditions brought on by COVID-19 in a competitive real estate market! He was always accessible and timely in his communication, would definitely recommend to anyone looking for a trusted and experienced agent in the greater Grand Rapids market."</p>
+            <p class="text-primary font-semibold text-sm lg:text-base">— Evan Mlynarek</p>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
+            <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"We purchased a new build/spec home from Interra Homes and worked very closely with Jeff Hill. They were an absolute pleasure to work with, immediate with their responses to any issues that arose, and very knowledgeable with the buying/building process."</p>
+            <p class="text-primary font-semibold text-sm lg:text-base">— Andrea G.</p>
           </div>
         </div>
       </section>
@@ -606,20 +620,73 @@
         </div>
       </section>
 
-      <!-- Testimonials Row 2 -->
-      <section class="py-6 lg:py-12 px-6 md:px-12 bg-white">
-        <h2 class="text-xl lg:text-2xl font-bold text-primary mb-4 text-center">And more...</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 max-w-4xl mx-auto">
-          <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
-            <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"Jeff's extensive industry experience and professionalism were critical to making this a smooth process overall, despite the challenging conditions brought on by COVID-19 in a competitive real estate market! He was always accessible and timely in his communication, would definitely recommend to anyone looking for a trusted and experienced agent in the greater Grand Rapids market."</p>
-            <p class="text-primary font-semibold text-sm lg:text-base">— Evan Mlynarek</p>
-          </div>
-          <div class="bg-gray-50 rounded-lg p-4 lg:p-6">
-            <p class="text-gray-700 italic text-sm lg:text-base mb-2 lg:mb-4">"We purchased a new build/spec home from Interra Homes and worked very closely with Jeff Hill. They were an absolute pleasure to work with, immediate with their responses to any issues that arose, and very knowledgeable with the buying/building process."</p>
-            <p class="text-primary font-semibold text-sm lg:text-base">— Andrea G.</p>
-          </div>
+      <!-- Out in the Community - Photo Album -->
+      <section id="community" class="py-6 lg:py-12 px-6 md:px-12 bg-white">
+        <h2 class="text-xl lg:text-2xl font-bold text-primary mb-6 text-center">Out in the Community</h2>
+        <div id="community-photos" class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto">
+          <!-- Photos loaded dynamically from localStorage -->
         </div>
+        <p id="community-empty" class="text-center text-gray-500 italic py-8 hidden">Photos coming soon...</p>
       </section>
+
+      <!-- Photo Lightbox Modal -->
+      <div id="photo-lightbox" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4" onclick="closeLightbox()">
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-4xl font-light hover:text-gray-300">&times;</button>
+        <div class="max-w-4xl max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
+          <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[75vh] object-contain rounded-lg">
+          <p id="lightbox-caption" class="text-white text-center mt-4 text-lg px-4"></p>
+        </div>
+      </div>
+
+      <script>
+        // Load community photos from localStorage
+        function loadCommunityPhotos() {
+          const container = document.getElementById('community-photos');
+          const emptyMsg = document.getElementById('community-empty');
+          const photos = JSON.parse(localStorage.getItem('communityPhotos') || '[]');
+
+          if (photos.length === 0) {
+            emptyMsg.classList.remove('hidden');
+            return;
+          }
+
+          emptyMsg.classList.add('hidden');
+          container.innerHTML = photos.map((photo, index) => `
+            <div class="relative overflow-hidden rounded-lg shadow-md group cursor-pointer aspect-[4/3]" onclick="openLightbox(${index})">
+              <img src="${photo.url}" alt="${photo.caption || 'Community photo'}"
+                   class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300">
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 translate-y-full group-hover:translate-y-0 transition duration-300">
+                <p class="text-white text-sm font-medium">${photo.caption || ''}</p>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        function openLightbox(index) {
+          const photos = JSON.parse(localStorage.getItem('communityPhotos') || '[]');
+          const photo = photos[index];
+          if (!photo) return;
+
+          document.getElementById('lightbox-image').src = photo.url;
+          document.getElementById('lightbox-caption').textContent = photo.caption || '';
+          document.getElementById('photo-lightbox').classList.remove('hidden');
+          document.getElementById('photo-lightbox').classList.add('flex');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+          document.getElementById('photo-lightbox').classList.add('hidden');
+          document.getElementById('photo-lightbox').classList.remove('flex');
+          document.body.style.overflow = '';
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeLightbox();
+        });
+
+        document.addEventListener('DOMContentLoaded', loadCommunityPhotos);
+      </script>
 
       <!-- Recently Sold -->
       <section id="recently-sold" class="py-12 px-6 md:px-12 bg-gray-100">

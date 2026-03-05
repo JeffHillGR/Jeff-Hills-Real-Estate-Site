@@ -188,8 +188,12 @@
   <div id="admin-dashboard" class="hidden">
     <header class="bg-primary text-white py-4 px-6 shadow-md">
       <div class="max-w-6xl mx-auto flex justify-between items-center">
-        <h1 class="text-xl font-bold">Blog Admin</h1>
-        <div class="flex gap-4">
+        <h1 class="text-xl font-bold">Site Admin</h1>
+        <div class="flex gap-4 items-center">
+          <a href="#" onclick="scrollToSection('editor')" class="text-white/80 hover:text-white text-sm">Blog</a>
+          <a href="#" onclick="scrollToSection('listing-section')" class="text-white/80 hover:text-white text-sm">Listing</a>
+          <a href="#" onclick="scrollToSection('community-photos-section')" class="text-white/80 hover:text-white text-sm">Photos</a>
+          <span class="text-white/40">|</span>
           <a href="index.html" class="text-white/80 hover:text-white text-sm">View Site</a>
           <button onclick="logout()" class="text-white/80 hover:text-white text-sm">Logout</button>
         </div>
@@ -252,7 +256,7 @@
       </div>
 
       <!-- Featured Listing Section -->
-      <div class="mt-8">
+      <div class="mt-8" id="listing-section">
         <div class="bg-white rounded-lg shadow-lg p-6">
           <h2 class="text-xl font-bold text-gray-800 mb-4">Featured Listing</h2>
           <p class="text-sm text-gray-500 mb-4">This listing will appear on the homepage below the CTA tiles.</p>
@@ -320,6 +324,44 @@
           </div>
 
           <div id="listing-status" class="mt-4 text-sm hidden"></div>
+        </div>
+      </div>
+
+      <!-- Community Photos Section -->
+      <div class="mt-8" id="community-photos-section">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-4">Community Photo Album</h2>
+          <p class="text-sm text-gray-500 mb-4">Manage the "Out in the Community" photos on the homepage. Max 8 photos.</p>
+
+          <!-- Current Photos Grid -->
+          <div id="community-photos-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <!-- Photos will be rendered here -->
+          </div>
+          <p id="no-photos-message" class="text-gray-500 text-sm italic mb-6 hidden">No photos added yet</p>
+
+          <!-- Add New Photo Form -->
+          <div class="border-t pt-4">
+            <h3 class="font-semibold text-gray-700 mb-3">Add New Photo</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Photo URL *</label>
+                <input type="text" id="new-photo-url" placeholder="https://example.com/photo.jpg"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Caption *</label>
+                <input type="text" id="new-photo-caption" placeholder="Community event description"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent">
+              </div>
+            </div>
+            <div class="flex gap-3 mt-4">
+              <button onclick="addCommunityPhoto()" class="bg-primary hover:bg-accent text-white font-bold py-2 px-6 rounded-lg transition">
+                Add Photo
+              </button>
+            </div>
+          </div>
+
+          <div id="photos-status" class="mt-4 text-sm hidden"></div>
         </div>
       </div>
 
@@ -450,11 +492,19 @@
       initEditor();
       loadPosts();
       loadFeaturedListing();
+      loadCommunityPhotos();
     }
 
     function logout() {
       localStorage.removeItem('adminLoggedIn');
       location.reload();
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
 
     function initEditor() {
@@ -931,6 +981,91 @@
       status.textContent = message;
       status.className = 'mt-4 text-sm ' + colorClass;
       status.classList.remove('hidden');
+    }
+
+    // Community Photos Functions
+    function loadCommunityPhotos() {
+      const photos = JSON.parse(localStorage.getItem('communityPhotos') || '[]');
+      const grid = document.getElementById('community-photos-grid');
+      const noPhotosMsg = document.getElementById('no-photos-message');
+
+      if (photos.length === 0) {
+        grid.innerHTML = '';
+        noPhotosMsg.classList.remove('hidden');
+        return;
+      }
+
+      noPhotosMsg.classList.add('hidden');
+      grid.innerHTML = photos.map((photo, index) => `
+        <div class="relative group border border-gray-200 rounded-lg overflow-hidden">
+          <img src="${photo.url}" alt="${photo.caption}" class="w-full h-32 object-cover">
+          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
+            <button onclick="editCommunityPhoto(${index})" class="bg-white text-gray-800 px-3 py-1 rounded text-sm hover:bg-gray-100">Edit</button>
+            <button onclick="deleteCommunityPhoto(${index})" class="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">Delete</button>
+          </div>
+          <div class="p-2 bg-gray-50">
+            <p class="text-xs text-gray-600 truncate">${photo.caption}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addCommunityPhoto() {
+      const url = document.getElementById('new-photo-url').value.trim();
+      const caption = document.getElementById('new-photo-caption').value.trim();
+
+      if (!url || !caption) {
+        alert('Please enter both a photo URL and caption');
+        return;
+      }
+
+      const photos = JSON.parse(localStorage.getItem('communityPhotos') || '[]');
+
+      if (photos.length >= 8) {
+        alert('Maximum 8 photos allowed. Please delete one first.');
+        return;
+      }
+
+      photos.push({ url, caption });
+      localStorage.setItem('communityPhotos', JSON.stringify(photos));
+
+      document.getElementById('new-photo-url').value = '';
+      document.getElementById('new-photo-caption').value = '';
+
+      loadCommunityPhotos();
+      showPhotosStatus('Photo added!', 'text-green-600');
+    }
+
+    function editCommunityPhoto(index) {
+      const photos = JSON.parse(localStorage.getItem('communityPhotos') || '[]');
+      const photo = photos[index];
+
+      const newCaption = prompt('Edit caption:', photo.caption);
+      if (newCaption !== null && newCaption.trim()) {
+        photos[index].caption = newCaption.trim();
+        localStorage.setItem('communityPhotos', JSON.stringify(photos));
+        loadCommunityPhotos();
+        showPhotosStatus('Caption updated!', 'text-green-600');
+      }
+    }
+
+    function deleteCommunityPhoto(index) {
+      if (!confirm('Delete this photo?')) return;
+
+      const photos = JSON.parse(localStorage.getItem('communityPhotos') || '[]');
+      photos.splice(index, 1);
+      localStorage.setItem('communityPhotos', JSON.stringify(photos));
+
+      loadCommunityPhotos();
+      showPhotosStatus('Photo deleted', 'text-orange-600');
+    }
+
+    function showPhotosStatus(message, colorClass) {
+      const status = document.getElementById('photos-status');
+      status.textContent = message;
+      status.className = 'mt-4 text-sm ' + colorClass;
+      status.classList.remove('hidden');
+      setTimeout(() => status.classList.add('hidden'), 3000);
     }
   </script>
 </body>
