@@ -984,33 +984,44 @@
     }
 
     // Community Photos Functions
-    function loadCommunityPhotos() {
-      const photos = JSON.parse(localStorage.getItem('communityPhotos') || '[]');
+    let photosCache = [];
+
+    async function loadCommunityPhotos() {
       const grid = document.getElementById('community-photos-grid');
       const noPhotosMsg = document.getElementById('no-photos-message');
 
-      if (photos.length === 0) {
-        grid.innerHTML = '';
-        noPhotosMsg.classList.remove('hidden');
-        return;
-      }
+      grid.innerHTML = '<p class="text-gray-500 text-sm col-span-4">Loading...</p>';
 
-      noPhotosMsg.classList.add('hidden');
-      grid.innerHTML = photos.map((photo, index) => `
-        <div class="relative group border border-gray-200 rounded-lg overflow-hidden">
-          <img src="${photo.url}" alt="${photo.caption}" class="w-full h-32 object-cover">
-          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
-            <button onclick="editCommunityPhoto(${index})" class="bg-white text-gray-800 px-3 py-1 rounded text-sm hover:bg-gray-100">Edit</button>
-            <button onclick="deleteCommunityPhoto(${index})" class="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">Delete</button>
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL + '?type=photos');
+        photosCache = await response.json();
+
+        if (photosCache.length === 0) {
+          grid.innerHTML = '';
+          noPhotosMsg.classList.remove('hidden');
+          return;
+        }
+
+        noPhotosMsg.classList.add('hidden');
+        grid.innerHTML = photosCache.map((photo, index) => `
+          <div class="relative group border border-gray-200 rounded-lg overflow-hidden">
+            <img src="${photo.url}" alt="${photo.caption}" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
+              <button onclick="editCommunityPhoto('${photo.id}')" class="bg-white text-gray-800 px-3 py-1 rounded text-sm hover:bg-gray-100">Edit</button>
+              <button onclick="deleteCommunityPhoto('${photo.id}')" class="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">Delete</button>
+            </div>
+            <div class="p-2 bg-gray-50">
+              <p class="text-xs text-gray-600 truncate">${photo.caption}</p>
+            </div>
           </div>
-          <div class="p-2 bg-gray-50">
-            <p class="text-xs text-gray-600 truncate">${photo.caption}</p>
-          </div>
-        </div>
-      `).join('');
+        `).join('');
+      } catch (error) {
+        console.error('Error loading photos:', error);
+        grid.innerHTML = '<p class="text-red-500 text-sm col-span-4">Error loading photos</p>';
+      }
     }
 
-    function addCommunityPhoto() {
+    async function addCommunityPhoto() {
       const url = document.getElementById('new-photo-url').value.trim();
       const caption = document.getElementById('new-photo-caption').value.trim();
 
@@ -1019,45 +1030,94 @@
         return;
       }
 
-      const photos = JSON.parse(localStorage.getItem('communityPhotos') || '[]');
-
-      if (photos.length >= 8) {
+      if (photosCache.length >= 8) {
         alert('Maximum 8 photos allowed. Please delete one first.');
         return;
       }
 
-      photos.push({ url, caption });
-      localStorage.setItem('communityPhotos', JSON.stringify(photos));
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'photos',
+            action: 'save',
+            id: 'photo_' + Date.now(),
+            url,
+            caption
+          })
+        });
 
-      document.getElementById('new-photo-url').value = '';
-      document.getElementById('new-photo-caption').value = '';
+        document.getElementById('new-photo-url').value = '';
+        document.getElementById('new-photo-caption').value = '';
 
-      loadCommunityPhotos();
-      showPhotosStatus('Photo added!', 'text-green-600');
-    }
-
-    function editCommunityPhoto(index) {
-      const photos = JSON.parse(localStorage.getItem('communityPhotos') || '[]');
-      const photo = photos[index];
-
-      const newCaption = prompt('Edit caption:', photo.caption);
-      if (newCaption !== null && newCaption.trim()) {
-        photos[index].caption = newCaption.trim();
-        localStorage.setItem('communityPhotos', JSON.stringify(photos));
-        loadCommunityPhotos();
-        showPhotosStatus('Caption updated!', 'text-green-600');
+        showPhotosStatus('Saving...', 'text-gray-600');
+        setTimeout(() => {
+          loadCommunityPhotos();
+          showPhotosStatus('Photo added!', 'text-green-600');
+        }, 1500);
+      } catch (error) {
+        console.error('Error adding photo:', error);
+        showPhotosStatus('Error adding photo', 'text-red-600');
       }
     }
 
-    function deleteCommunityPhoto(index) {
+    async function editCommunityPhoto(id) {
+      const photo = photosCache.find(p => p.id === id);
+      if (!photo) return;
+
+      const newCaption = prompt('Edit caption:', photo.caption);
+      if (newCaption !== null && newCaption.trim()) {
+        try {
+          await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'photos',
+              action: 'update',
+              id,
+              caption: newCaption.trim()
+            })
+          });
+
+          showPhotosStatus('Updating...', 'text-gray-600');
+          setTimeout(() => {
+            loadCommunityPhotos();
+            showPhotosStatus('Caption updated!', 'text-green-600');
+          }, 1500);
+        } catch (error) {
+          console.error('Error updating photo:', error);
+          showPhotosStatus('Error updating caption', 'text-red-600');
+        }
+      }
+    }
+
+    async function deleteCommunityPhoto(id) {
       if (!confirm('Delete this photo?')) return;
 
-      const photos = JSON.parse(localStorage.getItem('communityPhotos') || '[]');
-      photos.splice(index, 1);
-      localStorage.setItem('communityPhotos', JSON.stringify(photos));
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'photos',
+            action: 'delete',
+            id
+          })
+        });
 
-      loadCommunityPhotos();
-      showPhotosStatus('Photo deleted', 'text-orange-600');
+        showPhotosStatus('Deleting...', 'text-gray-600');
+        setTimeout(() => {
+          loadCommunityPhotos();
+          showPhotosStatus('Photo deleted', 'text-orange-600');
+        }, 1500);
+      } catch (error) {
+        console.error('Error deleting photo:', error);
+        showPhotosStatus('Error deleting photo', 'text-red-600');
+      }
     }
 
     function showPhotosStatus(message, colorClass) {
