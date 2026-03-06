@@ -636,8 +636,19 @@
       <!-- Out in the Community - Photo Album -->
       <section id="community" class="py-6 lg:py-12 px-6 md:px-12 bg-white">
         <h2 class="text-xl lg:text-2xl font-bold text-primary mb-6 text-center">Out in the Community</h2>
-        <div id="community-photos" class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto">
-          <!-- Photos loaded dynamically from localStorage -->
+        <!-- Loading skeleton - shows immediately -->
+        <div id="community-loading" class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto">
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+        </div>
+        <div id="community-photos" class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto hidden">
+          <!-- Photos loaded dynamically -->
         </div>
         <p id="community-empty" class="text-center text-gray-500 italic py-8 hidden">Photos coming soon...</p>
       </section>
@@ -652,40 +663,104 @@
       </div>
 
       <script>
-        // Load community photos from localStorage
+        // Load community photos with caching and preloading
         let communityPhotosCache = [];
+
+        // Preload an image and return a promise
+        function preloadImage(src) {
+          return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+            img.src = src;
+          });
+        }
+
+        // Render photos with cascade animation
+        function renderCommunityPhotos(photos) {
+          const container = document.getElementById('community-photos');
+          const loading = document.getElementById('community-loading');
+          const emptyMsg = document.getElementById('community-empty');
+
+          if (photos.length === 0) {
+            loading.classList.add('hidden');
+            emptyMsg.classList.remove('hidden');
+            container.classList.add('hidden');
+            return;
+          }
+
+          // Create random delays for cascade animation
+          const delays = photos.map(() => Math.random() * 600);
+          container.innerHTML = photos.map((photo, index) => `
+            <div class="relative overflow-hidden rounded-lg shadow-md group cursor-pointer aspect-[4/3] opacity-0 scale-90"
+                 onclick="openLightbox(${index})"
+                 style="animation: cardLand 0.4s ease-out ${delays[index]}ms forwards;">
+              <img src="${photo.url}" alt="${photo.caption || 'Community photo'}"
+                   class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300">
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 translate-y-full group-hover:translate-y-0 transition duration-300">
+                <p class="text-white text-sm font-medium">${photo.caption || ''}</p>
+              </div>
+            </div>
+          `).join('');
+
+          // Hide loading, show photos
+          loading.classList.add('hidden');
+          emptyMsg.classList.add('hidden');
+          container.classList.remove('hidden');
+        }
 
         async function loadCommunityPhotos() {
           const container = document.getElementById('community-photos');
+          const loading = document.getElementById('community-loading');
           const emptyMsg = document.getElementById('community-empty');
 
+          // Try to show cached photos immediately
+          const cached = localStorage.getItem('communityPhotosCache');
+          if (cached) {
+            try {
+              const cachedPhotos = JSON.parse(cached);
+              if (cachedPhotos.length > 0) {
+                communityPhotosCache = cachedPhotos;
+                // Preload cached images then show
+                await Promise.all(cachedPhotos.map(p => preloadImage(p.url)));
+                renderCommunityPhotos(cachedPhotos);
+              }
+            } catch (e) {
+              console.warn('Error parsing cached photos:', e);
+            }
+          }
+
+          // Fetch fresh data from API (in background if we showed cache)
           try {
             const response = await fetch(GOOGLE_SCRIPT_URL + '?type=photos');
-            communityPhotosCache = await response.json();
+            const freshPhotos = await response.json();
 
-            if (communityPhotosCache.length === 0) {
+            // Update cache
+            localStorage.setItem('communityPhotosCache', JSON.stringify(freshPhotos));
+            communityPhotosCache = freshPhotos;
+
+            if (freshPhotos.length === 0) {
+              loading.classList.add('hidden');
               emptyMsg.classList.remove('hidden');
-              container.innerHTML = '';
+              container.classList.add('hidden');
               return;
             }
 
-            emptyMsg.classList.add('hidden');
-            // Create random order for cascade animation
-            const delays = communityPhotosCache.map(() => Math.random() * 600);
-            container.innerHTML = communityPhotosCache.map((photo, index) => `
-              <div class="relative overflow-hidden rounded-lg shadow-md group cursor-pointer aspect-[4/3] opacity-0 scale-90"
-                   onclick="openLightbox(${index})"
-                   style="animation: cardLand 0.4s ease-out ${delays[index]}ms forwards;">
-                <img src="${photo.url}" alt="${photo.caption || 'Community photo'}"
-                     class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300">
-                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 translate-y-full group-hover:translate-y-0 transition duration-300">
-                  <p class="text-white text-sm font-medium">${photo.caption || ''}</p>
-                </div>
-              </div>
-            `).join('');
+            // Only re-render if no cache was shown OR if data changed
+            const cacheStr = cached || '[]';
+            const freshStr = JSON.stringify(freshPhotos);
+            if (cacheStr !== freshStr) {
+              // Preload all images before showing cascade
+              await Promise.all(freshPhotos.map(p => preloadImage(p.url)));
+              renderCommunityPhotos(freshPhotos);
+            }
           } catch (error) {
             console.error('Error loading community photos:', error);
-            emptyMsg.classList.remove('hidden');
+            // Only show error if nothing cached
+            if (!cached) {
+              loading.classList.add('hidden');
+              emptyMsg.classList.remove('hidden');
+            }
           }
         }
 
