@@ -659,8 +659,11 @@
             emptyMsg.classList.add('hidden');
             container.innerHTML = communityPhotosCache.map((photo, index) => `
               <div class="relative overflow-hidden rounded-lg shadow-md group cursor-pointer aspect-[4/3]" onclick="openLightbox(${index})">
+                <div class="absolute inset-0 bg-gray-200 animate-pulse"></div>
                 <img src="${photo.url}" alt="${photo.caption || 'Community photo'}"
-                     class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300">
+                     loading="lazy"
+                     onload="this.previousElementSibling.remove(); this.classList.add('opacity-100')"
+                     class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500 opacity-0">
                 <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 translate-y-full group-hover:translate-y-0 transition duration-300">
                   <p class="text-white text-sm font-medium">${photo.caption || ''}</p>
                 </div>
