@@ -242,6 +242,19 @@
         transform: translateY(0);
       }
     }
+    @keyframes cardLand {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-20px) rotate(-2deg);
+      }
+      70% {
+        transform: scale(1.02) translateY(2px) rotate(0.5deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotate(0);
+      }
+    }
     #featured-listing {
       opacity: 0;
     }
@@ -657,13 +670,14 @@
             }
 
             emptyMsg.classList.add('hidden');
+            // Create random order for cascade animation
+            const delays = communityPhotosCache.map(() => Math.random() * 600);
             container.innerHTML = communityPhotosCache.map((photo, index) => `
-              <div class="relative overflow-hidden rounded-lg shadow-md group cursor-pointer aspect-[4/3]" onclick="openLightbox(${index})">
-                <div class="absolute inset-0 bg-gray-200 animate-pulse"></div>
+              <div class="relative overflow-hidden rounded-lg shadow-md group cursor-pointer aspect-[4/3] opacity-0 scale-90"
+                   onclick="openLightbox(${index})"
+                   style="animation: cardLand 0.4s ease-out ${delays[index]}ms forwards;">
                 <img src="${photo.url}" alt="${photo.caption || 'Community photo'}"
-                     loading="lazy"
-                     onload="this.previousElementSibling.remove(); this.classList.add('opacity-100')"
-                     class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500 opacity-0">
+                     class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300">
                 <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 translate-y-full group-hover:translate-y-0 transition duration-300">
                   <p class="text-white text-sm font-medium">${photo.caption || ''}</p>
                 </div>
