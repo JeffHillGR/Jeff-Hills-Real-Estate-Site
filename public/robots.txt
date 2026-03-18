@@ -1,4 +1,50 @@
+# Allow all AI crawlers for Answer Engine Optimization (AEO)
+# Last updated: March 2026
+
+# OpenAI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Google AI
+User-agent: Google-Extended
+Allow: /
+
+# Apple
+User-agent: Applebot-Extended
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+# Microsoft/Bing
+User-agent: Bingbot
+Allow: /
+
+# Meta
+User-agent: FacebookBot
+Allow: /
+
+# All other crawlers
 User-agent: *
 Allow: /
 
-Sitemap: https://jeffhillrealty.vercel.app/sitemap.xml
+# Sitemap location
+Sitemap: https://www.jeffhillrealty.com/sitemap.xml
