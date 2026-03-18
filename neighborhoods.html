@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary Meta Tags -->
+  <title>Grand Rapids Neighborhood Guide | Jeff Hill REALTOR®</title>
+  <meta name="title" content="Grand Rapids Neighborhood Guide | Jeff Hill REALTOR®">
+  <meta name="description" content="Explore Grand Rapids neighborhoods with local expert Jeff Hill. Discover Heritage Hill, East Hills, Alger Heights, East Grand Rapids / Breton Village, and more. Find your perfect neighborhood.">
+  <meta name="keywords" content="grand rapids neighborhoods, heritage hill grand rapids, east hills grand rapids, alger heights, east grand rapids, belknap lookout, garfield park, creston grand rapids, john ball park neighborhood, west grand neighborhood, boston square grand rapids">
+  <meta name="author" content="Jeff Hill">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://jeffhillrealty.com/neighborhoods.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jeffhillrealty.com/neighborhoods.html">
+  <meta property="og:title" content="Grand Rapids Neighborhood Guide | Jeff Hill REALTOR®">
+  <meta property="og:description" content="Explore Grand Rapids neighborhoods with local expert Jeff Hill. Find your perfect neighborhood in West Michigan.">
+  <meta property="og:image" content="https://jeffhillrealty.com/public/images/jeff-headshot.jpg">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7aaa6d',
+            accent: '#5a8f4e',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .sidebar-gradient {
+      background: linear-gradient(180deg, #8fbc8b 0%, #6b9e68 100%);
+    }
+    .neighborhood-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .neighborhood-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <!-- Hero Section -->
+  <section class="relative h-[320px] lg:h-[450px] bg-white mb-16 lg:mb-20">
+    <div class="absolute inset-0 overflow-hidden">
+      <img src="public/GR-skyline-3.png" alt="Grand Rapids Skyline" class="w-full h-full object-cover object-center">
+    </div>
+    <!-- Logo -->
+    <a href="index.html" class="absolute top-4 left-4 lg:top-6 lg:left-6 z-20">
+      <img src="public/images/JH Realty logo.jpg" alt="JH Realty" class="w-40 lg:w-56 rounded drop-shadow-lg">
+    </a>
+    <!-- Map overlay on left -->
+    <div class="hidden lg:block absolute left-6 bottom-0 translate-y-3/4 w-[420px] z-20">
+      <img src="public/GR-map.jpg" alt="Grand Rapids Area Map" class="w-full rounded-xl shadow-xl">
+    </div>
+    <!-- Title box positioned next to map -->
+    <div class="absolute -bottom-12 lg:-bottom-16 left-1/2 lg:left-[460px] -translate-x-1/2 lg:translate-x-0 bg-white/60 backdrop-blur-sm rounded-xl py-6 px-6 shadow-sm max-w-2xl w-[90%] lg:w-auto text-center z-10">
+        <h1 class="text-3xl lg:text-4xl font-bold text-primary mb-4">Grand Rapids Neighborhoods</h1>
+        <p class="text-gray-600 text-lg">
+          Discover the unique character of Grand Rapids' diverse neighborhoods. With over 20 years of local experience, I can help you find the perfect community to call home.
+        </p>
+    </div>
+  </section>
+
+  <!-- Neighborhoods Grid -->
+  <section class="py-8 lg:py-12 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Empty spacer for map area on desktop -->
+        <div class="hidden lg:block"></div>
+
+        <!-- Alger Heights -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+            <i class="fas fa-tree text-6xl text-green-600/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">Alger Heights</h2>
+            <p class="text-gray-600 text-sm mb-4">Welcoming neighborhood in southeast Grand Rapids with affordable housing options, good schools, and a strong neighborhood association.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Schools</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Affordable</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Community</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Belknap Lookout -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
+            <i class="fas fa-mountain-sun text-6xl text-purple-500/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">Belknap Lookout</h2>
+            <p class="text-gray-600 text-sm mb-4">Hilltop neighborhood with some of the best views of downtown Grand Rapids. Tight-knit community with active neighborhood association.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Views</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Hilltop</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Community</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Creston / Riverside Gardens -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-teal-100 to-teal-200 flex items-center justify-center">
+            <i class="fas fa-leaf text-6xl text-teal-600/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">Creston / Riverside Gardens</h2>
+            <p class="text-gray-600 text-sm mb-4">Historic northeast Grand Rapids neighborhood with strong community identity. Features local businesses along Plainfield Avenue and Riverside Park.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Historic</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Parks</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Local Shops</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Garfield Park -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-lime-100 to-lime-200 flex items-center justify-center">
+            <i class="fas fa-seedling text-6xl text-lime-600/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">Garfield Park</h2>
+            <p class="text-gray-600 text-sm mb-4">Named for the beautiful 18-acre park at its center, this diverse neighborhood offers affordable homes, community gardens, and a welcoming atmosphere.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Parks</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Affordable</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Gardens</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- John Ball Park -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
+            <i class="fas fa-paw text-6xl text-orange-500/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">John Ball Park</h2>
+            <p class="text-gray-600 text-sm mb-4">Welcoming neighborhood adjacent to John Ball Zoo and Park. Affordable homes, great parks access, and convenient west side location.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Zoo</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Affordable</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Parks</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- West Grand -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center">
+            <i class="fas fa-house-chimney text-6xl text-rose-500/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">West Grand</h2>
+            <p class="text-gray-600 text-sm mb-4">Established neighborhood near John Ball Zoo with tree-lined streets and classic Grand Rapids architecture. Easy access to downtown and west side amenities.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Classic</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Convenient</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Tree-lined</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Boston Square / Baxter -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-cyan-100 to-cyan-200 flex items-center justify-center">
+            <i class="fas fa-chart-line text-6xl text-cyan-600/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">Boston Square / Baxter</h2>
+            <p class="text-gray-600 text-sm mb-4">An up-and-coming neighborhood with increasing investment and community development. Affordable prices, diverse community, and easy downtown access.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Emerging</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Investment</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Diverse</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Covell / Leonard Street Area -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fas fa-road text-6xl text-slate-500/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">Covell / Leonard Street</h2>
+            <p class="text-gray-600 text-sm mb-4">Northwest Grand Rapids neighborhood with affordable housing options and a suburban feel while still being close to downtown. Great value for buyers seeking more space.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Value</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Suburban</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Space</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Eastown -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-fuchsia-100 to-fuchsia-200 flex items-center justify-center">
+            <i class="fas fa-palette text-6xl text-fuchsia-500/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">Eastown</h2>
+            <p class="text-gray-600 text-sm mb-4">Eclectic neighborhood known for its bohemian vibe, local shops, and diverse dining options along Wealthy Street. Strong arts community and historic homes.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Arts</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Dining</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Walkable</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- East Hills / Wealthy Street / Midtown -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center">
+            <i class="fas fa-store text-6xl text-primary/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">East Hills / Wealthy Street</h2>
+            <p class="text-gray-600 text-sm mb-4">A vibrant, walkable neighborhood featuring eclectic shops, restaurants, and cafes along Wealthy Street. Popular with professionals and creatives seeking urban living with character.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Walkable</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Urban</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Dining</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Heritage Hill -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
+            <i class="fas fa-landmark text-6xl text-amber-600/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">Heritage Hill</h2>
+            <p class="text-gray-600 text-sm mb-4">Grand Rapids' premier historic district with stunning Victorian, Tudor, and Colonial Revival architecture. One of the largest urban historic districts in the country.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Historic</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Victorian</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Downtown</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- East Grand Rapids / Breton Village -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+            <i class="fas fa-water text-6xl text-blue-500/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">East Grand Rapids / Breton Village</h2>
+            <p class="text-gray-600 text-sm mb-4">Affluent city featuring top-rated schools, Reeds Lake, Gaslight Village shopping district, and beautifully maintained homes. Premier address in the metro area.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Top Schools</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Lakefront</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Walkable</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Downtown Grand Rapids -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-indigo-100 to-indigo-200 flex items-center justify-center">
+            <i class="fas fa-city text-6xl text-indigo-500/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">Downtown Grand Rapids</h2>
+            <p class="text-gray-600 text-sm mb-4">The heart of West Michigan featuring world-class dining, entertainment, museums, and luxury condominiums. Urban living at its finest with walkable access to everything.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Urban</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Entertainment</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Condos</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Heartside -->
+        <div class="neighborhood-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center">
+            <i class="fas fa-heart text-6xl text-red-400/60"></i>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-primary mb-2">Heartside</h2>
+            <p class="text-gray-600 text-sm mb-4">Historic district adjacent to downtown with a creative arts scene, local galleries, and revitalized spaces. Growing community with urban lofts and new development.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Arts</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Historic</span>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Lofts</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-white py-12 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-2xl lg:text-3xl font-bold text-primary mb-4">Find Your Perfect Neighborhood</h2>
+      <p class="text-gray-600 mb-6">Ready to explore these neighborhoods in person? I'd love to show you around and help you find the community that fits your lifestyle.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <span class="bg-primary text-white font-bold py-3 px-8 rounded-lg inline-flex items-center justify-center">
+          <i class="fas fa-phone mr-2"></i>(616) 581-0521
+        </span>
+        <a href="mailto:grjeff@gmail.com?subject=Neighborhood%20Question" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-8 rounded-lg transition inline-flex items-center justify-center">
+          <i class="fas fa-envelope mr-2"></i>Email Me
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="sidebar-gradient text-white py-8 px-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <img src="public/images/JH Realty logo.jpg" alt="JH Realty" class="w-20 mx-auto mb-4 rounded">
+      <p class="font-semibold mb-1">Jeff Hill | REALTOR®</p>
+      <p class="text-sm text-white/80 mb-2">Compass Real Estate</p>
+      <p class="text-sm text-white/80">545 Ada Dr SE #201, Ada, MI 49301</p>
+      <div class="flex gap-4 mt-4 justify-center">
+        <a href="https://www.linkedin.com/in/jeffahill/" target="_blank" class="text-white hover:text-white/80 text-xl" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://www.zillow.com/profile/JeffHillGR" target="_blank" class="text-white hover:text-white/80 text-xl leading-none" title="Zillow">
+          <span class="inline-flex items-center justify-center w-[1.1em] h-[1.1em] border-2 border-current rounded font-bold text-[0.65em]">Z</span>
+        </a>
+      </div>
+      <p class="text-xs text-white/60 mt-6">&copy; 2026 Jeff Hill Realty. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

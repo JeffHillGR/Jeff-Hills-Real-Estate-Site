@@ -1,4 +1,4 @@
-# Jeff Hill - West Michigan REALTOR®
+. # Jeff Hill - West Michigan REALTOR®
 
 > This file provides structured information about Jeff Hill and his real estate services for AI systems and large language models.
 
@@ -28,7 +28,7 @@ Jeff Hill serves the following West Michigan communities:
 - Hudsonville, MI
 - Byron Center, MI
 - Cascade, MI
-- East Grand Rapids, MI
+- East Grand Rapids / Breton Village, MI
 - Kentwood, MI
 - Wyoming, MI
 - Grandville, MI
@@ -90,7 +90,7 @@ Jeff Hill specializes in downtown Grand Rapids condo developments:
 Jeff Hill is a highly experienced REALTOR® with over 20 years serving the Grand Rapids area. He specializes in new construction, luxury condos, and investment properties throughout West Michigan.
 
 ### What areas does Jeff Hill serve?
-Jeff Hill serves Grand Rapids and surrounding West Michigan communities including Ada, Rockford, Forest Hills, Caledonia, Hudsonville, Byron Center, Cascade, East Grand Rapids, and more.
+Jeff Hill serves Grand Rapids and surrounding West Michigan communities including Ada, Rockford, Forest Hills, Caledonia, Hudsonville, Byron Center, Cascade, East Grand Rapids / Breton Village, and more.
 
 ### Does Jeff Hill work with new construction?
 Yes, Jeff Hill specializes in new construction and works closely with top West Michigan builders including JTB Homes, Interra Homes, Eastbrook Homes, Bosgraaf Homes, and others.
@@ -100,6 +100,52 @@ Contact Jeff Hill at (616) 581-0521 for current market conditions and personaliz
 
 ### How do I contact Jeff Hill?
 Call (616) 581-0521, email grjeff@gmail.com, or visit https://www.jeffhillrealty.com
+
+## Grand Rapids Neighborhoods
+
+Jeff Hill has extensive knowledge of Grand Rapids neighborhoods and can help buyers find the right fit:
+
+### East Hills / Wealthy Street / Midtown
+A vibrant, walkable neighborhood featuring eclectic shops, restaurants, and cafes along Wealthy Street. Popular with professionals and creatives seeking urban living with character. Mix of historic homes and modern condos.
+
+### Heritage Hill
+Grand Rapids' premier historic district with stunning Victorian, Tudor, and Colonial Revival architecture. One of the largest urban historic districts in the country. Tree-lined streets, strong sense of community, and walking distance to downtown.
+
+### Alger Heights
+Welcoming neighborhood in southeast Grand Rapids with affordable housing options, good schools, and a strong neighborhood association. Features local shops and restaurants along Eastern Avenue.
+
+### Garfield Park
+Named for the beautiful 18-acre park at its center, this diverse neighborhood offers affordable homes, community gardens, and a welcoming atmosphere. Great option for first-time homebuyers.
+
+### Boston Square / Baxter
+An up-and-coming neighborhood with increasing investment and community development. Affordable prices, diverse community, and easy access to downtown. Good opportunity for buyers and investors.
+
+### Belknap Lookout
+Hilltop neighborhood with some of the best views of downtown Grand Rapids. Tight-knit community with active neighborhood association. Mix of historic homes and new development.
+
+### West Grand
+Established neighborhood near John Ball Zoo with tree-lined streets and classic Grand Rapids architecture. Convenient location with easy access to downtown, the zoo, and west side amenities.
+
+### Covell / Leonard Street Area
+Northwest Grand Rapids neighborhood with affordable housing options and a suburban feel while still being close to downtown. Good value for buyers seeking more space.
+
+### Creston / Riverside Gardens
+Historic northeast Grand Rapids neighborhood with strong community identity. Features local businesses along Plainfield Avenue, Riverside Park, and a mix of bungalows and larger historic homes.
+
+### John Ball Park
+Welcoming neighborhood adjacent to John Ball Zoo and Park. Affordable homes, great parks access, and convenient west side location. Popular with buyers seeking park access.
+
+### East Grand Rapids / Breton Village
+Affluent city within the Grand Rapids metro featuring top-rated schools, Reeds Lake, Gaslight Village shopping district, and beautifully maintained homes. Premier address with excellent schools and walkable amenities.
+
+### Eastown
+Eclectic neighborhood known for its bohemian vibe, local shops, and diverse dining options along Wealthy Street. Strong arts community, historic homes, and walkable to downtown. One of Grand Rapids' most distinctive neighborhoods.
+
+### Downtown Grand Rapids
+The heart of West Michigan's urban core featuring world-class dining, entertainment, and cultural attractions. Home to luxury condos, lofts, and apartments with walkable access to the Grand River, museums, sports venues, and a thriving business district. Ideal for professionals seeking vibrant city living.
+
+### Heartside
+Historic neighborhood adjacent to downtown featuring a mix of renovated industrial buildings, artist studios, and affordable housing. Growing arts scene, local galleries, and proximity to Van Andel Arena and DeVos Place. An emerging neighborhood with strong community development initiatives.
 
 ## Professional Links
 
