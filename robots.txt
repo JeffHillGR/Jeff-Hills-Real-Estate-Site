@@ -1,0 +1,31 @@
+# Allow all search engines and AI crawlers
+User-agent: *
+Allow: /
+
+# Explicitly allow AI crawlers for AEO
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Sitemap location
+Sitemap: https://jeffhillrealty.com/sitemap.xml
+
+# LLMs.txt for AI context
+# See: https://jeffhillrealty.com/public/llms.txt

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Should I Buy Now or Wait? | Jeff Hill REALTOR®</title>
+  <meta name="description" content="Should I buy now or wait? Get honest advice from West Michigan REALTOR Jeff Hill on timing your home purchase.">
+  <meta name="author" content="Jeff Hill">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://jeffhillrealty.com/faq-buy-now-or-wait.html">
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "Should I buy now or wait?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There is no clear signal coming. If there was, everyone would act on it at the same time, and that usually makes things worse, not better. Instead of trying to outguess the market, look at your situation: Are you financially ready? Would staying put for 3-5+ years make sense? Does buying actually improve your life right now? If those are yes, waiting is a gamble, not a strategy."
+      }
+    }]
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7aaa6d',
+            accent: '#5a8f4e',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .banner-image {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .banner-image.active {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- Hero Banner with Rotating Images -->
+  <section class="relative h-[200px] lg:h-[300px] bg-gray-100 overflow-hidden">
+    <img src="public/images/RE Banners-6.png" alt="West Michigan luxury home exterior" class="banner-image active absolute inset-0 w-full h-full object-cover object-center">
+    <img src="public/images/RE Banners-7.png" alt="Grand Rapids area new construction home" class="banner-image absolute inset-0 w-full h-full object-cover object-center">
+    <img src="public/images/RE Banners-10.png" alt="Beautiful family home in West Michigan" class="banner-image absolute inset-0 w-full h-full object-cover object-center">
+    <img src="public/images/RE Banners-9.png" alt="Modern home interior design" class="banner-image absolute inset-0 w-full h-full object-cover object-center">
+  </section>
+
+  <!-- Main Content -->
+  <div class="max-w-6xl mx-auto px-6 py-8 lg:py-12">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+
+      <!-- Left Sidebar: Photo + Logo -->
+      <div class="lg:w-1/4 flex flex-col items-center text-center">
+        <img src="public/images/jeff-headshot.jpg" alt="Jeff Hill" class="w-40 h-40 lg:w-48 lg:h-48 rounded-lg object-cover shadow-lg">
+        <p class="text-primary font-bold text-lg mt-3">Jeff Hill</p>
+        <p class="text-gray-600 text-sm">Licensed REALTOR®</p>
+        <img src="public/images/JH Realty logo.jpg" alt="JH Realty" class="w-32 lg:w-40 mt-6 rounded">
+      </div>
+
+      <!-- Main Content: Question + Answer -->
+      <div class="lg:w-3/4">
+        <h1 class="text-2xl lg:text-3xl font-bold text-primary mb-6">Should I buy now… or just wait this out?</h1>
+
+        <div class="bg-gray-100 rounded-xl p-6 lg:p-8 shadow-sm">
+          <p class="text-gray-700 text-lg leading-relaxed mb-6">
+            I get this one a lot—and usually it comes with a "yeah, but…"
+          </p>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Yeah, but rates are high. Yeah, but the market might drop. Yeah, but everything feels uncertain right now.
+          </p>
+          <p class="text-gray-700 leading-relaxed mb-6">
+            All fair.
+          </p>
+          <p class="text-gray-700 leading-relaxed mb-6">
+            Here's the honest answer: <strong>There is no "clear" signal coming.</strong> If there was, everyone would act on it at the same time—and that usually makes things worse, not better.
+          </p>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            So instead of trying to outguess the market, we look at <em>your</em> situation:
+          </p>
+          <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 ml-4">
+            <li>Are you financially ready?</li>
+            <li>Would staying put for 3-5+ years make sense?</li>
+            <li>Does buying actually improve your life right now?</li>
+          </ul>
+          <p class="text-gray-700 leading-relaxed text-lg font-medium">
+            If those are yes, waiting is a gamble, not a strategy.
+          </p>
+        </div>
+
+        <!-- Back to Home Button -->
+        <div class="mt-8">
+          <a href="index.html" class="inline-flex items-center bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-lg transition">
+            <i class="fas fa-arrow-left mr-2"></i>Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 px-6 mt-12">
+    <div class="max-w-6xl mx-auto text-center">
+      <p class="font-semibold mb-1">Jeff Hill | REALTOR®</p>
+      <p class="text-sm text-white/80 mb-2">Compass Real Estate</p>
+      <p class="text-sm text-white/80">(616) 581-0521 | grjeff@gmail.com</p>
+      <p class="text-xs text-white/60 mt-4">&copy; 2026 Jeff Hill Realty. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Banner rotation
+    const banners = document.querySelectorAll('.banner-image');
+    let currentBanner = Math.floor(Math.random() * banners.length);
+    banners.forEach(b => b.classList.remove('active'));
+    banners[currentBanner].classList.add('active');
+
+    function rotateBanners() {
+      banners[currentBanner].classList.remove('active');
+      currentBanner = (currentBanner + 1) % banners.length;
+      banners[currentBanner].classList.add('active');
+    }
+    setInterval(rotateBanners, 6000);
+  </script>
+</body>
+</html>

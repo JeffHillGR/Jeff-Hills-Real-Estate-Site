@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Did I Miss the Window in West Michigan? | Jeff Hill REALTOR®</title>
+  <meta name="description" content="Is West Michigan still a good place to buy or did I miss it? Get honest market insights from local REALTOR Jeff Hill.">
+  <meta name="author" content="Jeff Hill">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://jeffhillrealty.com/faq-west-michigan-timing.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "Is West Michigan still a good place to buy or did I miss it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "West Michigan isn't the kind of market that spikes and crashes overnight. It's been steady for a long time. It's not cheap anymore, but it's still relatively stable compared to a lot of the country. No, you didn't miss it. But the easy wins from 5-10 years ago are gone. Now it's about buying something that makes sense long-term."
+      }
+    }]
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { primary: '#7aaa6d', accent: '#5a8f4e' } } }
+    }
+  </script>
+  <style>
+    .banner-image { opacity: 0; transition: opacity 1s ease-in-out; }
+    .banner-image.active { opacity: 1; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <section class="relative h-[200px] lg:h-[300px] bg-gray-100 overflow-hidden">
+    <img src="public/images/RE Banners-6.png" alt="West Michigan luxury home exterior" class="banner-image active absolute inset-0 w-full h-full object-cover object-center">
+    <img src="public/images/RE Banners-7.png" alt="Grand Rapids area new construction home" class="banner-image absolute inset-0 w-full h-full object-cover object-center">
+    <img src="public/images/RE Banners-10.png" alt="Beautiful family home in West Michigan" class="banner-image absolute inset-0 w-full h-full object-cover object-center">
+    <img src="public/images/RE Banners-9.png" alt="Modern home interior design" class="banner-image absolute inset-0 w-full h-full object-cover object-center">
+  </section>
+
+  <div class="max-w-6xl mx-auto px-6 py-8 lg:py-12">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+
+      <div class="lg:w-1/4 flex flex-col items-center text-center">
+        <img src="public/images/jeff-headshot.jpg" alt="Jeff Hill" class="w-40 h-40 lg:w-48 lg:h-48 rounded-lg object-cover shadow-lg">
+        <p class="text-primary font-bold text-lg mt-3">Jeff Hill</p>
+        <p class="text-gray-600 text-sm">Licensed REALTOR®</p>
+        <img src="public/images/JH Realty logo.jpg" alt="JH Realty" class="w-32 lg:w-40 mt-6 rounded">
+      </div>
+
+      <div class="lg:w-3/4">
+        <h1 class="text-2xl lg:text-3xl font-bold text-primary mb-6">Is West Michigan still a good place to buy… or did I miss it?</h1>
+
+        <div class="bg-gray-100 rounded-xl p-6 lg:p-8 shadow-sm">
+          <p class="text-gray-700 text-lg leading-relaxed mb-6">
+            This is the "did I miss the window?" question.
+          </p>
+          <p class="text-gray-700 leading-relaxed mb-6">
+            <strong>Short answer:</strong> West Michigan isn't the kind of market that spikes and crashes overnight. It's been steady for a long time.
+          </p>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            What's changed is:
+          </p>
+          <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 ml-4">
+            <li>it's not "cheap" anymore</li>
+            <li>but it's still relatively stable compared to a lot of the country</li>
+          </ul>
+          <p class="text-gray-700 leading-relaxed mb-6">
+            So no, you didn't miss it. But the easy wins from 5-10 years ago? Those are gone.
+          </p>
+          <p class="text-gray-700 leading-relaxed text-lg font-medium">
+            Now it's about buying something that makes sense long-term, not trying to get lucky short-term.
+          </p>
+        </div>
+
+        <div class="mt-8">
+          <a href="index.html" class="inline-flex items-center bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-lg transition">
+            <i class="fas fa-arrow-left mr-2"></i>Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-gray-800 text-white py-8 px-6 mt-12">
+    <div class="max-w-6xl mx-auto text-center">
+      <p class="font-semibold mb-1">Jeff Hill | REALTOR®</p>
+      <p class="text-sm text-white/80 mb-2">Compass Real Estate</p>
+      <p class="text-sm text-white/80">(616) 581-0521 | grjeff@gmail.com</p>
+      <p class="text-xs text-white/60 mt-4">&copy; 2026 Jeff Hill Realty. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const banners = document.querySelectorAll('.banner-image');
+    let currentBanner = Math.floor(Math.random() * banners.length);
+    banners.forEach(b => b.classList.remove('active'));
+    banners[currentBanner].classList.add('active');
+    function rotateBanners() {
+      banners[currentBanner].classList.remove('active');
+      currentBanner = (currentBanner + 1) % banners.length;
+      banners[currentBanner].classList.add('active');
+    }
+    setInterval(rotateBanners, 6000);
+  </script>
+</body>
+</html>
