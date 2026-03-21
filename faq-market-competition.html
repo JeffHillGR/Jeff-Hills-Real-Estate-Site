@@ -24,6 +24,8 @@
   }
   </script>
 
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script>
@@ -38,7 +40,7 @@
 </head>
 <body class="bg-gray-50 min-h-screen">
 
-  <section class="relative h-[200px] lg:h-[300px] bg-gray-100 overflow-hidden">
+  <section class="relative h-[280px] lg:h-[380px] bg-gray-100 overflow-hidden">
     <!-- Logo -->
     <a href="index.html" class="absolute top-4 left-4 lg:top-6 lg:left-6 z-20">
       <img src="public/images/JH Realty logo.jpg" alt="JH Realty" class="w-40 lg:w-56 rounded drop-shadow-lg">
@@ -53,10 +55,17 @@
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
 
       <div class="lg:w-1/4 flex flex-col items-center text-center">
-        <img src="public/images/jeff-headshot.jpg" alt="Jeff Hill" class="w-40 h-40 lg:w-48 lg:h-48 rounded-lg object-cover shadow-lg">
+        <img src="public/images/jeff-headshot.jpg" alt="Jeff Hill" class="w-40 h-40 lg:w-48 lg:h-48 rounded-lg object-cover shadow-lg" loading="lazy">
         <p class="text-primary font-bold text-lg mt-3">Jeff Hill</p>
         <p class="text-gray-600 text-sm">Licensed REALTOR®</p>
-        <img src="public/images/JH Realty logo.jpg" alt="JH Realty" class="w-32 lg:w-40 mt-6 rounded">
+
+        <!-- Related Question -->
+        <a href="faq-what-can-i-afford.html" class="block mt-8 group w-full">
+          <div class="bg-white/90 backdrop-blur-sm rounded-xl py-6 px-5 shadow-lg text-center group-hover:bg-white transition border border-gray-200">
+            <p class="text-gray-800 font-bold text-lg leading-snug">"What can I actually afford (not what the bank says)?"</p>
+            <p class="text-primary text-sm mt-3 group-hover:underline font-medium">Read my answer <i class="fas fa-arrow-right text-xs ml-1"></i></p>
+          </div>
+        </a>
       </div>
 
       <div class="lg:w-3/4">
@@ -83,8 +92,11 @@
           </p>
         </div>
 
-        <div class="mt-8">
-          <a href="index.html" class="inline-flex items-center bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-lg transition">
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a href="sms:+16165810521" class="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition">
+            <i class="fas fa-comment-sms mr-2"></i>Reach Out to Me
+          </a>
+          <a href="index.html" class="flex items-center justify-center bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg transition">
             <i class="fas fa-arrow-left mr-2"></i>Back to Home
           </a>
         </div>
@@ -95,7 +107,7 @@
   <footer class="bg-gray-800 text-white py-8 px-6 mt-12">
     <div class="max-w-6xl mx-auto text-center">
       <p class="font-semibold mb-1">Jeff Hill | REALTOR®</p>
-      <p class="text-sm text-white/80 mb-2">Compass Real Estate</p>
+      <p class="text-sm text-white/80 mb-2">JH Realty Partners</p>
       <p class="text-sm text-white/80">(616) 581-0521 | grjeff@gmail.com</p>
       <p class="text-xs text-white/60 mt-4">&copy; 2026 Jeff Hill Realty. All rights reserved.</p>
     </div>
