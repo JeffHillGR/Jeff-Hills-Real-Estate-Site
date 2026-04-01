@@ -568,6 +568,29 @@
         }
       });
 
+      // Block pasted images - prompt for URL instead
+      quill.root.addEventListener('paste', function(e) {
+        var clipboardData = e.clipboardData || window.clipboardData;
+        if (clipboardData && clipboardData.items) {
+          for (var i = 0; i < clipboardData.items.length; i++) {
+            if (clipboardData.items[i].type.indexOf('image') !== -1) {
+              e.preventDefault();
+              e.stopPropagation();
+              var url = prompt('Pasted image detected. Enter the image URL:');
+              if (url) {
+                var range = quill.getSelection();
+                quill.insertEmbed(range ? range.index : 0, 'image', url);
+                var postImageField = document.getElementById('post-image');
+                if (!postImageField.value) {
+                  postImageField.value = url;
+                }
+              }
+              return false;
+            }
+          }
+        }
+      });
+
       // Image menu handling
       var imgMenu = document.getElementById('img-menu');
       var selectedImg = null;
@@ -710,13 +733,23 @@
         return;
       }
 
-      // Auto-extract first image from content if no image field set
+      // Auto-extract first image URL from content if no image field set
+      // Only use real URLs, skip any base64 data
       if (!image && content) {
-        const imgMatch = content.match(/<img[^>]+src=["']([^"']+)["']/i);
-        if (imgMatch) {
-          image = imgMatch[1];
-          document.getElementById('post-image').value = image;
+        const imgMatches = content.matchAll(/<img[^>]+src=["']([^"']+)["']/gi);
+        for (const match of imgMatches) {
+          if (!match[1].startsWith('data:')) {
+            image = match[1];
+            document.getElementById('post-image').value = image;
+            break;
+          }
         }
+      }
+
+      // Block saving if image field contains base64
+      if (image && image.startsWith('data:')) {
+        alert('The image field contains embedded data instead of a URL. Please enter an image URL.');
+        return;
       }
 
       const postData = {
