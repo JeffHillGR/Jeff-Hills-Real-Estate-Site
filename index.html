@@ -561,15 +561,15 @@
             </div>
 
             <!-- Featured Listing -->
-            <div id="featured-listing" class="hidden mt-8 lg:mt-20 pt-6 border-t border-gray-200">
+            <div id="featured-listing" class="animate-fade-slide mt-8 lg:mt-20 pt-6 border-t border-gray-200">
               <h3 class="text-xl font-bold text-primary mb-4 text-center">Featured Listing</h3>
-              <a id="featured-link" href="#" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group">
-                <img id="featured-photo" src="" alt="Featured Listing" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
+              <a href="https://belmontsquaretownhomes.com" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group">
+                <img src="public/images/Belmont Square Sidewalk View.png" alt="Belmont Square Townhomes" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
                 <div class="p-4">
-                  <p id="featured-price" class="text-xl font-bold text-primary"></p>
-                  <p id="featured-address" class="text-gray-700 text-sm mt-1"></p>
-                  <p id="featured-details" class="text-gray-500 text-sm mt-1"></p>
-                  <p id="featured-agent" class="text-gray-400 text-xs mt-2 italic"></p>
+                  <p class="text-xl font-bold text-primary">Coming Soon!</p>
+                  <p class="text-gray-700 text-sm mt-1">Belmont Square Townhomes</p>
+                  <p class="text-gray-500 text-sm mt-1">2375 Belmont Center Drive, Belmont, MI</p>
+                  <p class="text-gray-700 text-sm font-semibold mt-1">Starting at $419,000</p>
                 </div>
               </a>
               <button onclick="openModal('lets-go-look')" class="w-full mt-3 bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-lg transition">
@@ -696,26 +696,6 @@
             </div>
           </a>
         </div>
-      </section>
-
-      <!-- Out in the Community - Photo Album -->
-      <section id="community" class="py-6 lg:py-12 px-6 md:px-12 bg-white">
-        <h2 class="text-xl lg:text-2xl font-bold text-primary mb-6 text-center">Out in the Community</h2>
-        <!-- Loading skeleton - shows immediately -->
-        <div id="community-loading" class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto">
-          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
-          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
-          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
-          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
-          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
-          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
-          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
-          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
-        </div>
-        <div id="community-photos" class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto hidden">
-          <!-- Photos loaded dynamically -->
-        </div>
-        <p id="community-empty" class="text-center text-gray-500 italic py-8 hidden">Photos coming soon...</p>
       </section>
 
       <!-- Photo Lightbox Modal -->
@@ -858,12 +838,45 @@
       <section id="recently-sold" class="py-12 px-6 md:px-12 bg-gray-100">
         <div class="max-w-6xl mx-auto">
           <h2 class="text-2xl font-bold text-primary mb-8 text-center">My Recently Sold Homes</h2>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://cdn.resize.sparkplatform.com/ric/1600x1200/true/20260805103848778877000000-o.jpg" alt="5842 Chandonnet" loading="lazy" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="text-xs text-gray-600 leading-tight">5842 Chandonnet, Muskegon, MI</p>
+                <p class="text-sm font-bold text-primary mt-1">$479,000</p>
+                <p class="text-xs text-gray-500 mt-1">Represented the seller</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://cdn.resize.sparkplatform.com/ric/1600x1200/true/20260520183918530390000000-o.jpg" alt="3637 Colonial Ave NE" loading="lazy" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="text-xs text-gray-600 leading-tight">3637 Colonial Ave NE, Grand Rapids, MI</p>
+                <p class="text-sm font-bold text-primary mt-1">$321,500</p>
+                <p class="text-xs text-gray-500 mt-1">Represented the seller</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://cdn.resize.sparkplatform.com/ric/1600x1200/true/20260716173159885210000000-o.jpg" alt="8770 Jewell Ave NE" loading="lazy" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="text-xs text-gray-600 leading-tight">8770 Jewell Ave NE, Comstock Park, MI</p>
+                <p class="text-sm font-bold text-primary mt-1">$475,000</p>
+                <p class="text-xs text-gray-500 mt-1">Represented the buyer</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://cdn.resize.sparkplatform.com/ric/1600x1200/true/20260604135045748341000000-o.jpg" alt="616 Giddings Ave SE" loading="lazy" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="text-xs text-gray-600 leading-tight">616 Giddings Ave SE, Grand Rapids, MI</p>
+                <p class="text-sm font-bold text-primary mt-1">$355,000</p>
+                <p class="text-xs text-gray-500 mt-1">Represented the buyer</p>
+              </div>
+            </div>
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
               <img src="https://cdn.resize.sparkplatform.com/ric/1280x1024/true/20250516014849016968000000-o.jpg" alt="11410 Wild Pond Ct NE" loading="lazy" class="w-full h-32 object-cover">
               <div class="p-3">
                 <p class="text-xs text-gray-600 leading-tight">11410 Wild Pond Ct NE, Rockford, MI</p>
                 <p class="text-sm font-bold text-primary mt-1">$490,000</p>
+                <p class="text-xs text-gray-500 mt-1">Represented the seller</p>
               </div>
             </div>
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
@@ -871,6 +884,7 @@
               <div class="p-3">
                 <p class="text-xs text-gray-600 leading-tight">10139 Augusta Valley Ct SE, Ada, MI</p>
                 <p class="text-sm font-bold text-primary mt-1">$775,000</p>
+                <p class="text-xs text-gray-500 mt-1">Represented the seller</p>
               </div>
             </div>
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
@@ -878,6 +892,7 @@
               <div class="p-3">
                 <p class="text-xs text-gray-600 leading-tight">11815 Henrietta Dr NE, Rockford, MI</p>
                 <p class="text-sm font-bold text-primary mt-1">$749,000</p>
+                <p class="text-xs text-gray-500 mt-1">Represented the buyer</p>
               </div>
             </div>
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
@@ -885,17 +900,31 @@
               <div class="p-3">
                 <p class="text-xs text-gray-600 leading-tight">1747 Flowers Mill Dr NE, Grand Rapids, MI</p>
                 <p class="text-sm font-bold text-primary mt-1">$920,000</p>
-              </div>
-            </div>
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src="https://cdn.resize.sparkplatform.com/ric/1280x1024/true/20220426221858541850000000-o.jpg" alt="22579 N Uldriks Dr" loading="lazy" class="w-full h-32 object-cover">
-              <div class="p-3">
-                <p class="text-xs text-gray-600 leading-tight">22579 N Uldriks Dr, Battle Creek, MI</p>
-                <p class="text-sm font-bold text-primary mt-1">$440,000</p>
+                <p class="text-xs text-gray-500 mt-1">Represented the buyer</p>
               </div>
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- Out in the Community - Photo Album -->
+      <section id="community" class="py-6 lg:py-12 px-6 md:px-12 bg-white">
+        <h2 class="text-xl lg:text-2xl font-bold text-primary mb-6 text-center">Out in the Community</h2>
+        <!-- Loading skeleton - shows immediately -->
+        <div id="community-loading" class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto">
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+          <div class="aspect-[4/3] bg-gray-200 rounded-lg animate-pulse"></div>
+        </div>
+        <div id="community-photos" class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto hidden">
+          <!-- Photos loaded dynamically -->
+        </div>
+        <p id="community-empty" class="text-center text-gray-500 italic py-8 hidden">Photos coming soon...</p>
       </section>
 
       <!-- Contact Section -->
@@ -1735,9 +1764,9 @@
       if (e.target === this) closeShareModal();
     });
 
-    // Load posts and featured listing on page load
+    // Load posts on page load
     loadBlogPosts();
-    loadFeaturedListing();
+    // Featured listing is now a static Belmont Square Townhomes promo (see HTML above)
   </script>
 
   <!-- Vercel Analytics -->
